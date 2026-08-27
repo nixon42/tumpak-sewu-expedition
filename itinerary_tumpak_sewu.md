@@ -16,7 +16,7 @@
 ### PLAN 1: Istirahat di Kota Malang (Aman, Nyaman, Banyak Warkop)
 *Rekomendasi jika kalian butuh tempat warkop 24 jam yang benar-benar proper, luas, dan nyaman untuk tidur bergantian.*
 *   **21:00 - 00:00:** Perjalanan Kediri ke Malang.
-*   **00:00 - 04:00:** Istirahat di Warkop 24 Jam (Rekomendasi: *Warmindo Mang Ujo* atau *Roketto Coffee*).
+*   **00:00 - 04:00:** Istirahat di Warkop / Warmindo 24 Jam (Rekomendasi: *Warmindo Mang Ujo* atau *Warkop Brewok Prime*).
 *   **04:00 - 06:00:** Perjalanan Malang ke Tumpak Sewu (Udara sangat dingin!).
 
 ### PLAN 2: Gas Terus Mendekati Tumpak Sewu (Turen / Pronojiwo)

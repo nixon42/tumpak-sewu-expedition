@@ -86,37 +86,37 @@
         color: '#10b981',
         gmapsQuery: 'SPBU Pertamina Dampit Malang'
       },
-      roketto_blitar: {
-        id: 'Roketto Coffee Blitar',
-        latLng: [-8.0935, 112.1760],
-        title: '☕ Roketto Coffee & Co Blitar (24 Jam)',
-        category: 'Kafe 24h (Plan 4)',
-        desc: 'Jl. Veteran 141, kafe modern 24 jam, AC sejuk, colokan listrik & Wi-Fi kencang.',
+      mbok_djilah_blitar: {
+        id: 'Sambel Bawang Mbok Djilah Blitar',
+        latLng: [-8.0965, 112.1645],
+        title: '🍗 Sambel Bawang Mbok Djilah Blitar (24 Jam)',
+        category: 'Kuliner Murah (Plan 4)',
+        desc: 'Jl. WR Supratman 62, penyetan 24 jam murah meriah (10k-15k), nasi bebas ambil & es teh.',
         color: '#a855f7',
-        gmapsQuery: 'Roketto Coffee Blitar'
+        gmapsQuery: 'Sambel Bawang Cobek Mbok Djilah Blitar'
       },
-      warkop_blitar: {
-        id: 'Warkop Agam Blitar',
+      warmindo_blitar: {
+        id: 'Warmindo & Kopi Pasar Wage Blitar',
         latLng: [-8.0990, 112.1640],
-        title: '🍜 Warkop Agam Patria Blitar (24 Jam)',
-        category: 'Warkop (Plan 4)',
-        desc: 'Jl. Mastrip, warkop legendaris 24 jam, kopi Aceh saring & mie instan malam.',
+        title: '🍜 Warmindo & Kopi Pasar Wage Blitar (24 Jam)',
+        category: 'Warkop Murah (Plan 4)',
+        desc: 'Jl. Mastrip, warkop & warmindo rakyat 24 jam, kopi 4k, indomie & lesehan santai.',
         color: '#a855f7',
-        gmapsQuery: 'Warkop Agam Blitar'
+        gmapsQuery: 'Pasar Wage Kota Blitar'
       },
-      roketto_malang: {
-        id: 'Roketto Coffee Malang',
+      warmindo_malang: {
+        id: 'Warmindo Mang Ujo Malang',
         latLng: [-7.9427, 112.6225],
-        title: '☕ Roketto Coffee Suhat Malang (24 Jam)',
-        category: 'Kafe 24h (Plan 1)',
-        desc: 'Jl. Kendalsari / Suhat, kafe 24 jam estetik, Wi-Fi kencang, AC & colokan.',
+        title: '🍜 Warmindo Mang Ujo Malang (24 Jam)',
+        category: 'Warmindo Murah (Plan 1)',
+        desc: 'Jl. Bukirsari / Suhat, warmindo 24 jam ramah kantong, indomie dok-dok, gorengan & kopi.',
         color: '#38bdf8',
-        gmapsQuery: 'Roketto Coffee Malang'
+        gmapsQuery: 'Warmindo Mang Ujo Malang'
       },
       brewok_malang: {
         id: 'Warkop Brewok Prime Malang',
         latLng: [-7.9468, 112.6312],
-        title: '🍜 Warkop Brewok Prime Malang (24 Jam)',
+        title: '☕ Warkop Brewok Prime Malang (24 Jam)',
         category: 'Warkop 24h (Plan 1)',
         desc: 'Jl. Selorejo / Suhat, warkop 24 jam legendaris, pancong lumer, kopi & lesehan.',
         color: '#38bdf8',
@@ -138,7 +138,7 @@
       blitar: { 
         latLng: [-8.0983, 112.1681], 
         title: 'Blitar Kota (KM 42)', 
-        desc: 'Plan 4: Kafe 24 Jam Roketto / Warkop Agam. Plan 3: Refuel SPBU Garum.',
+        desc: 'Plan 4: Warmindo Pasar Wage / Mbok Djilah (24 Jam). Plan 3: Refuel SPBU Garum.',
         gmapsQuery: 'Alun Alun Kota Blitar'
       },
       wlingi: { 
