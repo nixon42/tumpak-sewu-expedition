@@ -1,0 +1,137 @@
+<section id="section-costs" class="section-block">
+      <div class="section-header">
+        <span class="section-tag" style="color: var(--sky-400);">ESTIMASI ANGGARAN OTOMATIS</span>
+        <h2 class="section-title">💰 Kalkulator Biaya Wisata Interaktif</h2>
+        <p class="section-desc">
+          Simulasi rincian biaya patungan turing <strong>4 orang (2 motor matic)</strong> berdasarkan rute dan destinasi kedua yang dipilih.
+        </p>
+      </div>
+
+      <div class="glass-panel" style="padding: 20px;">
+        
+        <!-- CALCULATOR INTERACTIVE CONTROLS -->
+        <div class="calc-controls-grid">
+          
+          <!-- RUTE PLAN SELECTION -->
+          <div>
+            <div class="calc-group-title">1. Pilih Rute Ekspedisi</div>
+            <div class="calc-tiles-grid">
+              <button type="button" class="calc-tile-btn" id="calcPlanBtn1" onclick="setCalcPlan(1)">
+                <span>Plan 1</span>
+                <span class="calc-plan-sub" style="color: var(--sky-400);">Pujon • Warkop Malang</span>
+              </button>
+              <button type="button" class="calc-tile-btn tile-emerald active" id="calcPlanBtn2" onclick="setCalcPlan(2)">
+                <span>Plan 2 👑</span>
+                <span class="calc-plan-sub" style="color: var(--emerald-400);">Pujon • Rehat Dampit</span>
+              </button>
+              <button type="button" class="calc-tile-btn tile-purple" id="calcPlanBtn3" onclick="setCalcPlan(3)">
+                <span>Plan 3</span>
+                <span class="calc-plan-sub" style="color: var(--amber-400);">Blitar • Tidur Dampit</span>
+              </button>
+              <button type="button" class="calc-tile-btn tile-purple" id="calcPlanBtn4" onclick="setCalcPlan(4)">
+                <span>Plan 4</span>
+                <span class="calc-plan-sub" style="color: #c084fc;">Blitar • Warkop 24 Jam</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- DESTINASI KEDUA SELECTION -->
+          <div>
+            <div class="calc-group-title">2. Pilih Destinasi Kedua</div>
+            <div class="calc-tiles-grid">
+              <button type="button" class="calc-tile-btn active" id="destBtnA" onclick="setCalcDest('A')">
+                <span>Opsi A</span>
+                <span style="font-size: 0.7rem; color: var(--emerald-400);">Goa Tetes (Rp 0)</span>
+              </button>
+              <button type="button" class="calc-tile-btn" id="destBtnD" onclick="setCalcDest('D')">
+                <span>Opsi D</span>
+                <span style="font-size: 0.7rem; color: var(--emerald-400);">Kapas Biru (10k)</span>
+              </button>
+              <button type="button" class="calc-tile-btn" id="destBtnE" onclick="setCalcDest('E')">
+                <span>Opsi E</span>
+                <span style="font-size: 0.7rem; color: #06b6d4;">Kabut Pelangi (10k)</span>
+              </button>
+              <button type="button" class="calc-tile-btn" id="destBtnB" onclick="setCalcDest('B')">
+                <span>Opsi B</span>
+                <span style="font-size: 0.7rem; color: var(--rose-400);">Dasar Kapas Biru</span>
+              </button>
+              <button type="button" class="calc-tile-btn" id="destBtnT" onclick="setCalcDest('T')">
+                <span>Opsi F</span>
+                <span style="font-size: 0.7rem; color: #fb7185;">Teras Semeru (5k)</span>
+              </button>
+              <button type="button" class="calc-tile-btn" id="destBtnS" onclick="setCalcDest('S')">
+                <span>Opsi S</span>
+                <span style="font-size: 0.7rem; color: var(--amber-400);">Sarkawi Sumberurip</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- MODE BIAYA & KOMPONEN LOGISTIK -->
+          <div>
+            <div class="calc-group-title">3. Mode &amp; Komponen Biaya</div>
+            <div class="cost-mode-segmented">
+              <button type="button" class="cost-mode-btn active" id="btnPerPerson" onclick="setCostMode('pax')">Per Orang (1 Pax)</button>
+              <button type="button" class="cost-mode-btn" id="btnTotalGroup" onclick="setCostMode('group')">Rombongan (4 Pax)</button>
+            </div>
+            <div class="calc-checkboxes" style="margin-top: 10px;">
+              <label class="calc-checkbox-lbl">
+                <input type="checkbox" id="chkIncludeFuel" checked onchange="updateDynamicCalculator()">
+                <span>Hitung BBM Pertalite</span>
+              </label>
+              <label class="calc-checkbox-lbl">
+                <input type="checkbox" id="chkIncludeMeals" checked onchange="updateDynamicCalculator()">
+                <span>Hitung Makan &amp; Logistik (65k)</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- KPI SUMMARY TILES -->
+        <div class="calc-summary-grid">
+          <div class="calc-kpi-card">
+            <div class="calc-kpi-lbl">Tiket &amp; Wisata</div>
+            <div class="calc-kpi-val" id="summaryWisataVal">Rp 29.000</div>
+          </div>
+          <div class="calc-kpi-card">
+            <div class="calc-kpi-lbl">BBM Pertalite</div>
+            <div class="calc-kpi-val" id="summaryBbmVal">Rp 25.000</div>
+          </div>
+          <div class="calc-kpi-card">
+            <div class="calc-kpi-lbl">Makan &amp; Minum</div>
+            <div class="calc-kpi-val" id="summaryMakanVal">Rp 65.000</div>
+          </div>
+          <div class="calc-kpi-card">
+            <div class="calc-kpi-lbl">Status Kalkulasi</div>
+            <div class="calc-kpi-val" id="calcStatusBadge" style="font-size: 0.85rem; color: var(--emerald-400);">Lengkap (All-In)</div>
+          </div>
+        </div>
+
+        <!-- GRAND TOTAL HERO CARD -->
+        <div class="grand-total-card">
+          <div>
+            <div style="font-size: 0.84rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 700;">TOTAL ESTIMASI PENGELUARAN:</div>
+            <div id="calcResultLabel" style="font-size: 0.95rem; color: var(--text-primary); font-weight: 600;">Plan 2 + Opsi A (Per Orang / 1 Pax)</div>
+          </div>
+          <div class="grand-total-val" id="calcGrandTotalVal">Rp 119.000</div>
+        </div>
+
+        <!-- DETAILED BREAKDOWN TABLE -->
+        <div class="cost-table-wrapper">
+          <table class="cost-table">
+            <thead>
+              <tr>
+                <th>Komponen Pengeluaran</th>
+                <th>Kategori Pos</th>
+                <th>Tarif Satuan</th>
+                <th>Subtotal Terhitung</th>
+              </tr>
+            </thead>
+            <tbody id="calcTableBody">
+              <!-- Dynamically populated by JS updateDynamicCalculator() -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>

@@ -1,0 +1,717 @@
+<section id="section-timeline" class="section-block">
+      <div class="section-header">
+        <span class="section-tag" style="color: var(--sky-400);">KONTROL RUTE &amp; IN-CONTEXT VOTING</span>
+        <h2 class="section-title">⏱️ Pilihan Rute &amp; Visualisasi Koridor Ekspedisi</h2>
+        <p class="section-desc">
+          Bandingkan 4 opsi rute perjalanan Kediri ➔ Tumpak Sewu. Klik kartu rute untuk memvisualisasikan jalur pada peta &amp; profil elevasi, serta gunakan tombol <strong>Vote Rute Ini</strong> untuk memilih rute secara kolektif bersama rombongan.
+        </p>
+      </div>
+
+      <!-- UNIFIED 2-COLUMN CO-VISIBILITY CONTAINER -->
+      <div class="route-unified-container" id="routeUnifiedContainer">
+        
+        <div class="route-visualizer-pane">
+          <div class="visualizer-card">
+            <div class="visualizer-header">
+              <div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">GIS ROUTE VISUALIZER</div>
+                <div id="mapPlanIndicator" style="font-size: 1rem; font-weight: 800; color: var(--emerald-400);">
+                  Plan 2: Gas Terus Turen / Dampit (Pujon Pass)
+                </div>
+              </div>
+              <span id="routePlanBadgeDetail" class="badge badge-emerald-soft">👑 TOP RECOMMENDED</span>
+            </div>
+
+            <!-- PLAN TABS -->
+            <div class="plan-tabs-container" style="margin-bottom: 16px;">
+              <button class="plan-tab" id="tabPlan1" onclick="switchPlan(1)">Plan 1</button>
+              <button class="plan-tab active" id="tabPlan2" onclick="switchPlan(2)" style="background: rgba(16, 185, 129, 0.2); border-color: var(--emerald-400); color: var(--emerald-400);">Plan 2</button>
+              <button class="plan-tab" id="tabPlan3" onclick="switchPlan(3)">Plan 3</button>
+              <button class="plan-tab" id="tabPlan4" onclick="switchPlan(4)">Plan 4</button>
+            </div>
+            <!-- LEAFLET MAP VIEWPORT -->
+            <div id="routeMap" style="width: 100%; height: 35vh; min-height: 250px; border-radius: var(--radius-md); background: #0b1120; margin-top: 16px;"></div>
+            
+            <!-- DESTINATION QUICK-FOCUS PILLS (DISTANCE FROM TUMPAK SEWU) -->
+            <div class="dest-map-pills-bar">
+              <span style="font-size: 0.74rem; color: var(--text-muted); font-weight: 700; white-space: nowrap; flex-shrink: 0;">Destinasi Kedua:</span>
+              <button type="button" onclick="focusDestination('goatetes')" class="btn-action btn-sm dest-map-pill dest-pill-sky">
+                📍 Goa Tetes (0 km)
+              </button>
+              <button type="button" onclick="focusDestination('kapasbiru')" class="btn-action btn-sm dest-map-pill dest-pill-emerald">
+                👑 Kapas Biru (4.5 km)
+              </button>
+              <button type="button" onclick="focusDestination('kabutpelangi')" class="btn-action btn-sm dest-map-pill dest-pill-cyan">
+                🌈 Kabut Pelangi (6.5 km)
+              </button>
+              <button type="button" onclick="focusDestination('pantaimalang')" class="btn-action btn-sm dest-map-pill dest-pill-amber">
+                🏖️ Pantai JLS (60 km)
+              </button>
+              <button type="button" onclick="focusDestination('bromo')" class="btn-action btn-sm dest-map-pill dest-pill-purple">
+                🌋 Bromo (75 km)
+              </button>
+              <button type="button" onclick="focusDestination('terassemeru')" class="btn-action btn-sm dest-map-pill dest-pill-rose">
+                🏔️ Teras Semeru (4.5 km)
+              </button>
+            </div>
+
+            <!-- REST STOP QUICK-FOCUS PILLS -->
+            <div class="dest-map-pills-bar" style="margin-top: 4px;">
+              <span style="font-size: 0.74rem; color: var(--text-muted); font-weight: 700; white-space: nowrap; flex-shrink: 0;">Titik Rehat:</span>
+              <button type="button" onclick="focusRestStop('masjid_dampit')" class="btn-action btn-sm dest-map-pill dest-pill-emerald">
+                🕌 Masjid Dampit (Tidur)
+              </button>
+              <button type="button" onclick="focusRestStop('spbu_dampit')" class="btn-action btn-sm dest-map-pill dest-pill-emerald">
+                ⛽ SPBU Dampit (24h)
+              </button>
+              <button type="button" onclick="focusRestStop('roketto_blitar')" class="btn-action btn-sm dest-map-pill dest-pill-purple">
+                ☕ Roketto Blitar (24h)
+              </button>
+              <button type="button" onclick="focusRestStop('warkop_blitar')" class="btn-action btn-sm dest-map-pill dest-pill-purple">
+                🍜 Warkop Agam Blitar
+              </button>
+              <button type="button" onclick="focusRestStop('roketto_malang')" class="btn-action btn-sm dest-map-pill dest-pill-sky">
+                ☕ Roketto Malang (24h)
+              </button>
+            </div>
+            <div id="mapFallback" style="display: none; margin-top: 16px;">
+              <strong>⚠️ Mode Cadangan (Peta Statis):</strong> Koneksi internet atau CDN Leaflet terhambat. Koridor rute tetap aktif dengan koordinat Kediri → Malang/Blitar → Dampit → Pronojiwo.
+            </div>
+
+            <!-- ELEVATION VISUALIZER -->
+            <div style="margin-top: 16px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <h4 style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin: 0; text-transform: uppercase;">Profil Elevasi (mdpl)</h4>
+                <div id="svgPeak" style="font-size: 0.72rem; color: var(--emerald-400); font-weight: 700; background: rgba(16,185,129,0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(16,185,129,0.2);">Puncak: 1.180 mdpl (Pujon)</div>
+              </div>
+
+              <div id="elevationSvgContainer" style="width: 100%; min-height: 120px; border-radius: var(--radius-md); background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-subtle); padding: 8px 12px; box-sizing: border-box; position: relative; display: flex; flex-direction: column; justify-content: space-between;">
+                
+                <!-- Status Row Inside Chart -->
+                <div style="display: flex; justify-content: flex-start; z-index: 2; min-height: 22px;">
+                  <div id="svgHazardBanner" style="font-size: 0.7rem; color: var(--rose-400); font-weight: bold; background: rgba(244,63,94,0.15); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(244,63,94,0.3);">⚠️ Turunan Kritis Pujon (970m)</div>
+                  <div id="svgBlitarBanner" style="font-size: 0.7rem; color: var(--emerald-400); font-weight: bold; background: rgba(16,185,129,0.15); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(16,185,129,0.3); display: none;">✅ Jalur Aman (Max 350m)</div>
+                </div>
+
+                <div style="width: 100%; height: 80px; position: relative; margin-top: 4px; display: flex; align-items: center; justify-content: center;">
+                  <svg viewBox="0 0 400 100" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; display: block;">
+                    <defs>
+                      <linearGradient id="pujonGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="var(--sky-400)" stop-opacity="0.35"/>
+                        <stop offset="100%" stop-color="var(--sky-400)" stop-opacity="0.0"/>
+                      </linearGradient>
+                      <linearGradient id="blitarGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="var(--amber-400)" stop-opacity="0.35"/>
+                        <stop offset="100%" stop-color="var(--amber-400)" stop-opacity="0.0"/>
+                      </linearGradient>
+                    </defs>
+
+                    <!-- Pujon Path (Scaled to 400x100) -->
+                    <path id="svgPujonArea" d="M0,100 L0,80 L80,60 L160,10 L240,80 L320,90 L400,100 Z" fill="url(#pujonGrad)"></path>
+                    <path id="svgPujonLine" d="M0,80 L80,60 L160,10 L240,80 L320,90 L400,100" fill="none" stroke="var(--sky-400)" stroke-width="2.5" vector-effect="non-scaling-stroke"></path>
+
+                    <!-- Blitar Path (Scaled to 400x100) -->
+                    <path id="svgBlitarArea" d="M0,100 L0,80 L80,75 L160,70 L240,75 L320,85 L400,100 Z" fill="url(#blitarGrad)" style="display: none;"></path>
+                    <path id="svgBlitarLine" d="M0,80 L80,75 L160,70 L240,75 L320,85 L400,100" fill="none" stroke="var(--amber-400)" stroke-width="2.5" vector-effect="non-scaling-stroke" style="display: none;"></path>
+
+                    <!-- Waypoint Indicators (Collision-Free placement) -->
+                    <circle id="svgDotMalang" cx="235" cy="76" r="4" fill="var(--sky-400)" stroke="#0f172a" stroke-width="1.5"></circle>
+                    <text id="svgTextMalang" x="235" y="66" font-size="9" font-weight="600" fill="var(--text-secondary)" text-anchor="middle">Malang (Bypass)</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- PLAN INFO CONTENT -->
+            <div class="plan-info-container">
+<div class="plan-info-block" id="infoPlan1">
+              <div>
+                <div class="plan-card-header">
+                  <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(56, 189, 248, 0.2); display: flex; align-items: center; justify-content: center; color: var(--sky-400);">
+                    <svg class="svg-icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+                  </div>
+                  <span class="plan-badge badge-sky-soft">☕ Transit Urban Malang</span>
+                </div>
+                <h3 class="plan-card-title">Plan 1: Transit Warkop Malang Kota</h3>
+                <p class="plan-card-subtitle">Kediri ➔ Pare ➔ Pujon ➔ Malang Kota (Warkop 24 Jam) ➔ Pronojiwo</p>
+                <div class="plan-specs-grid">
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Jarak</span>
+                    <span class="plan-spec-v" style="color: var(--sky-400);">180 km</span>
+                  </div>
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Puncak</span>
+                    <span class="plan-spec-v" style="color: var(--sky-400);">1.180 mdpl</span>
+                  </div>
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Rehat Malang</span>
+                    <span class="plan-spec-v" style="color: var(--sky-400);">2j 45m</span>
+                  </div>
+                </div>
+                <ul class="plan-features-list">
+                  <li><span style="color: var(--sky-400);">✓</span> Rehat di kafe modern 24 jam Kota Malang (Wi-Fi, colokan, kuliner hangat).</li>
+                  <li><span style="color: var(--amber-400);">⚠️</span> Etape subuh cukup panjang (82 km Malang ➔ Pronojiwo harus start 03:15 WIB).</li>
+                  <li><span style="color: var(--rose-400);">⚠️</span> Melintasi turunan curam 970m Pujon–Batu pada tengah malam.</li>
+                </ul>
+                                <!-- TITIK REHAT PLAN 1 -->
+                <div class="plan-rest-box">
+                  <div class="rest-section-header">
+                    <span class="rest-section-label">📍 Rehat: Malang Kota (KM 98)</span>
+                    <span class="rest-duration-pill">2 Jam (01:15–03:15)</span>
+                  </div>
+                  <div class="rest-options-list">
+                    <div class="rest-option-row">
+                      <div class="rest-option-text">
+                        <div class="rest-option-name">☕ Roketto Coffee (24 Jam)</div>
+                        <div class="rest-option-detail">Jl. Kendalsari • Kafe AC &amp; Colokan</div>
+                      </div>
+                      <a href="https://www.google.com/maps/dir/?api=1&destination=Roketto+Coffee+Malang" target="_blank" rel="noopener noreferrer" class="btn-maps-mini" title="Buka Rute di Google Maps">
+                        <span>Maps ➔</span>
+                      </a>
+                    </div>
+                    <div class="rest-option-row">
+                      <div class="rest-option-text">
+                        <div class="rest-option-name">🍜 Warkop STK Soekarno-Hatta</div>
+                        <div class="rest-option-detail">Jl. Soekarno Hatta • Kopi, STK &amp; Lesehan</div>
+                      </div>
+                      <a href="https://www.google.com/maps/dir/?api=1&destination=Warkop+STK+Soekarno+Hatta+Malang" target="_blank" rel="noopener noreferrer" class="btn-maps-mini" title="Buka Rute di Google Maps">
+                        <span>Maps ➔</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- IN-CARD VOTE BUTTON & TALLY -->
+              <div>
+                <div class="plan-card-action-bar">
+                  <span class="plan-status-pill" style="color: var(--text-muted);">
+                    Pilih Rute Ini ➔
+                  </span>
+                  <button type="button" class="btn-action btn-vote btn-vote-route btn-vote-primary" data-plan="Plan 1" onclick="castVote('route', 'Plan 1', event)">
+                    🗳️ Vote Rute Ini
+                  </button>
+                </div>
+                <div class="card-vote-tally" id="voteTallyRoute-Plan1">
+                  <div class="vote-tally-header">
+                    <span class="vote-count-label" id="voteCountLabel-route-Plan1">0 suara (0%)</span>
+                    <span class="vote-status-badge" id="voteStatusBadge-route-Plan1">Belum ada suara</span>
+                  </div>
+                  <div class="vote-progress-track">
+                    <div class="vote-progress-fill" id="voteProgressFill-route-Plan1" style="width: 0%; background: linear-gradient(90deg, #0284c7, #38bdf8);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+<div class="plan-info-block active" id="infoPlan2">
+              <div>
+                <div class="plan-card-header">
+                  <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(16, 185, 129, 0.2); display: flex; align-items: center; justify-content: center; color: var(--emerald-400);">
+                    <svg class="svg-icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+                  </div>
+                  <span class="plan-badge badge-emerald-soft">👑 TOP RECOMMENDED</span>
+                </div>
+                <h3 class="plan-card-title">Plan 2: Gas Terus Turen / Dampit (Pujon Pass)</h3>
+                <p class="plan-card-subtitle">Kediri → Ngantang → Pujon → Dampit (Rest Area) → Pronojiwo</p>
+                <div class="plan-specs-grid">
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Jarak</span>
+                    <span class="plan-spec-v" style="color: var(--emerald-400);">180 km</span>
+                  </div>
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Puncak</span>
+                    <span class="plan-spec-v" style="color: var(--sky-400);">1.180 mdpl</span>
+                  </div>
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Rehat Dampit</span>
+                    <span class="plan-spec-v" style="color: var(--emerald-400);">2j 45m</span>
+                  </div>
+                </div>
+                <ul class="plan-features-list">
+                  <li><span style="color: var(--emerald-400);">✔</span> <strong>Posisi Terdepan:</strong> Tiba dini hari di Dampit (hanya 42 km sebelum Tumpak Sewu).</li>
+                  <li><span style="color: var(--emerald-400);">✔</span> <strong>Sunrise Ride Santai:</strong> Riding fajar 04:30 WIB sangat santai tanpa terburu-buru.</li>
+                  <li><span style="color: var(--rose-400);">⚠️</span> Wajib engine brake di turunan 970m Pujon–Batu pada tengah malam.</li>
+                </ul>
+                                <!-- TITIK REHAT PLAN 2 -->
+                <div class="plan-rest-box">
+                  <div class="rest-section-header">
+                    <span class="rest-section-label">📍 Rehat: Dampit (KM 118)</span>
+                    <span class="rest-duration-pill" style="color: var(--emerald-400); border-color: rgba(16,185,129,0.3);">2j 45m (Tidur Pulas)</span>
+                  </div>
+                  <div class="rest-options-list">
+                    <div class="rest-option-row">
+                      <div class="rest-option-text">
+                        <div class="rest-option-name">🕌 Masjid Besar Baiturrahim</div>
+                        <div class="rest-option-detail">Serambi karpet empuk untuk tidur pulas &amp; Subuh</div>
+                      </div>
+                      <a href="https://www.google.com/maps/dir/?api=1&destination=Masjid+Besar+Baiturrahim+Dampit+Malang" target="_blank" rel="noopener noreferrer" class="btn-maps-mini" title="Buka Rute di Google Maps">
+                        <span>Maps ➔</span>
+                      </a>
+                    </div>
+                    <div class="rest-option-row">
+                      <div class="rest-option-text">
+                        <div class="rest-option-name">⛽ SPBU 54.651.17 Dampit</div>
+                        <div class="rest-option-detail">Rest area 24 jam, minimarket, ATM &amp; bensin</div>
+                      </div>
+                      <a href="https://www.google.com/maps/dir/?api=1&destination=SPBU+Pertamina+Dampit+Malang" target="_blank" rel="noopener noreferrer" class="btn-maps-mini" title="Buka Rute di Google Maps">
+                        <span>Maps ➔</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- IN-CARD VOTE BUTTON & TALLY -->
+              <div>
+                <div class="plan-card-action-bar">
+                  <span class="plan-status-pill" style="color: var(--emerald-400);">
+                    <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--emerald-400); box-shadow:0 0 6px var(--emerald-400);"></span> Rute Aktif Terpilih
+                  </span>
+                  <button type="button" class="btn-action btn-vote btn-vote-route btn-vote-emerald" data-plan="Plan 2" onclick="castVote('route', 'Plan 2', event)">
+                    👍 Vote Rute Ini
+                  </button>
+                </div>
+                <div class="card-vote-tally" id="voteTallyRoute-Plan2">
+                  <div class="vote-tally-header">
+                    <span class="vote-count-label" id="voteCountLabel-route-Plan2">0 pemilih (0%)</span>
+                    <span class="vote-status-badge" id="voteStatusBadge-route-Plan2">Belum ada suara</span>
+                  </div>
+                  <div class="vote-progress-track">
+                    <div class="vote-progress-fill" id="voteProgressFill-route-Plan2" style="width: 0%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+<div class="plan-info-block" id="infoPlan3">
+              <div>
+                <div class="plan-card-header">
+                  <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(245, 158, 11, 0.2); display: flex; align-items: center; justify-content: center; color: var(--amber-400);">
+                    <svg class="svg-icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                  </div>
+                  <span class="plan-badge badge-amber-soft">🛏️ Tidur Pulas &amp; Pulih Stamina</span>
+                </div>
+                <h3 class="plan-card-title">Plan 3: Jalur Blitar (Tidur Pulas Dampit)</h3>
+                <p class="plan-card-subtitle">Kediri ➔ Blitar ➔ Kepanjen ➔ Rest Area Dampit (Tidur Pulas) ➔ Pronojiwo</p>
+                <div class="plan-specs-grid">
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Jarak</span>
+                    <span class="plan-spec-v" style="color: var(--amber-400);">158 km</span>
+                  </div>
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Puncak</span>
+                    <span class="plan-spec-v" style="color: var(--emerald-400);">350 mdpl</span>
+                  </div>
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Rehat Tidur</span>
+                    <span class="plan-spec-v" style="color: var(--amber-400);">3j 15m</span>
+                  </div>
+                </div>
+                <ul class="plan-features-list">
+                  <li><span style="color: var(--emerald-400);">✓</span> <strong>Pemulihan Fisik Total:</strong> Tidur pulas 3j 15m di serambi Masjid Besar Dampit / SPBU 54.651.17 sebelum trekking tebing.</li>
+                  <li><span style="color: var(--emerald-400);">✓</span> <strong>0% Risiko Rem Blong:</strong> Topografi landai maksimal 350m di Karangkates, bebas turunan maut 970m Pujon.</li>
+                  <li><span style="color: var(--emerald-400);">✓</span> <strong>Riding Fajar Dekat:</strong> Hanya 40 km dari Dampit ke Tumpak Sewu (1j 15m saat fajar).</li>
+                </ul>
+                                <!-- TITIK REHAT PLAN 3 -->
+                <div class="plan-rest-box">
+                  <div class="rest-section-header">
+                    <span class="rest-section-label">📍 Rehat: Dampit via Blitar (KM 118)</span>
+                    <span class="rest-duration-pill" style="color: var(--amber-400); border-color: rgba(245,158,11,0.3);">3j 15m (Tidur Pulas)</span>
+                  </div>
+                  <div class="rest-options-list">
+                    <div class="rest-option-row">
+                      <div class="rest-option-text">
+                        <div class="rest-option-name">🕌 Masjid Besar Baiturrahim</div>
+                        <div class="rest-option-detail">Serambi karpet empuk untuk tidur pulas &amp; Subuh</div>
+                      </div>
+                      <a href="https://www.google.com/maps/dir/?api=1&destination=Masjid+Besar+Baiturrahim+Dampit+Malang" target="_blank" rel="noopener noreferrer" class="btn-maps-mini" title="Buka Rute di Google Maps">
+                        <span>Maps ➔</span>
+                      </a>
+                    </div>
+                    <div class="rest-option-row">
+                      <div class="rest-option-text">
+                        <div class="rest-option-name">⛽ SPBU 54.651.17 Dampit</div>
+                        <div class="rest-option-detail">Rest area 24 jam, minimarket, ATM &amp; bensin</div>
+                      </div>
+                      <a href="https://www.google.com/maps/dir/?api=1&destination=SPBU+Pertamina+Dampit+Malang" target="_blank" rel="noopener noreferrer" class="btn-maps-mini" title="Buka Rute di Google Maps">
+                        <span>Maps ➔</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- IN-CARD VOTE BUTTON & TALLY -->
+              <div>
+                <div class="plan-card-action-bar">
+                  <span class="plan-status-pill" style="color: var(--text-muted);">
+                    Pilih Rute Ini ➔
+                  </span>
+                  <button type="button" class="btn-action btn-vote btn-vote-route btn-vote-amber" data-plan="Plan 3" onclick="castVote('route', 'Plan 3', event)">
+                    🗳️ Vote Rute Ini
+                  </button>
+                </div>
+                <div class="card-vote-tally" id="voteTallyRoute-Plan3">
+                  <div class="vote-tally-header">
+                    <span class="vote-count-label" id="voteCountLabel-route-Plan3">0 suara (0%)</span>
+                    <span class="vote-status-badge" id="voteStatusBadge-route-Plan3">Belum ada suara</span>
+                  </div>
+                  <div class="vote-progress-track">
+                    <div class="vote-progress-fill" id="voteProgressFill-route-Plan3" style="width: 0%; background: linear-gradient(90deg, #d97706, #fbbf24);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+<div class="plan-info-block" id="infoPlan4">
+              <div>
+                <div class="plan-card-header">
+                  <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(139, 92, 246, 0.2); display: flex; align-items: center; justify-content: center; color: #a78bfa;">
+                    <svg class="svg-icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+                  </div>
+                  <span class="plan-badge badge-purple-soft">☕ Warkop 24 Jam &amp; Hangout</span>
+                </div>
+                <h3 class="plan-card-title">Plan 4: Jalur Blitar (Warkop 24 Jam &amp; Chill)</h3>
+                <p class="plan-card-subtitle">Kediri ➔ Roketto / Warkop Agam Blitar (Rehat 4j 15m) ➔ Kepanjen ➔ Pronojiwo</p>
+                <div class="plan-specs-grid">
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Jarak</span>
+                    <span class="plan-spec-v" style="color: #c4b5fd;">158 km</span>
+                  </div>
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Puncak</span>
+                    <span class="plan-spec-v" style="color: var(--emerald-400);">350 mdpl</span>
+                  </div>
+                  <div class="plan-spec-col">
+                    <span class="plan-spec-k">Rehat Kafe</span>
+                    <span class="plan-spec-v" style="color: #c4b5fd;">4j 15m</span>
+                  </div>
+                </div>
+                <ul class="plan-features-list">
+                  <li><span style="color: #a78bfa;">✓</span> <strong>Hangout &amp; Kuliner Malam:</strong> Nongkrong 4j 15m di <em>Roketto Coffee &amp; Co</em> (Jl. Veteran 141) / <em>Warkop Agam Patria</em> (Jl. Mastrip), full charger &amp; Wi-Fi.</li>
+                  <li><span style="color: var(--emerald-400);">✓</span> <strong>0% Turunan Ekstrem Pujon:</strong> Topografi landai bebas risiko rem blong 970m.</li>
+                  <li><span style="color: #a78bfa;">✓</span> <strong>Midnight Riding Dingin &amp; Sepi:</strong> Start riding 02:30 WIB jalanan Blitar–Kepanjen sangat sepi &amp; mulus.</li>
+                </ul>
+                                <!-- TITIK REHAT PLAN 4 -->
+                <div class="plan-rest-box">
+                  <div class="rest-section-header">
+                    <span class="rest-section-label">📍 Rehat: Blitar Kota (KM 42)</span>
+                    <span class="rest-duration-pill" style="color: #c084fc; border-color: rgba(168,85,247,0.3);">4j 15m (Warkop 24h)</span>
+                  </div>
+                  <div class="rest-options-list">
+                    <div class="rest-option-row">
+                      <div class="rest-option-text">
+                        <div class="rest-option-name">☕ Roketto Coffee (24 Jam)</div>
+                        <div class="rest-option-detail">Jl. Veteran 141 • Kafe AC &amp; Charging Station</div>
+                      </div>
+                      <a href="https://www.google.com/maps/dir/?api=1&destination=Roketto+Coffee+Blitar" target="_blank" rel="noopener noreferrer" class="btn-maps-mini" title="Buka Rute di Google Maps">
+                        <span>Maps ➔</span>
+                      </a>
+                    </div>
+                    <div class="rest-option-row">
+                      <div class="rest-option-text">
+                        <div class="rest-option-name">🍜 Warkop Agam Patria (24 Jam)</div>
+                        <div class="rest-option-detail">Jl. Mastrip • Kopi Aceh &amp; Mie Hangat</div>
+                      </div>
+                      <a href="https://www.google.com/maps/dir/?api=1&destination=Warkop+Agam+Blitar" target="_blank" rel="noopener noreferrer" class="btn-maps-mini" title="Buka Rute di Google Maps">
+                        <span>Maps ➔</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- IN-CARD VOTE BUTTON & TALLY -->
+              <div>
+                <div class="plan-card-action-bar">
+                  <span class="plan-status-pill" style="color: var(--text-muted);">
+                    Pilih Rute Ini ➔
+                  </span>
+                  <button type="button" class="btn-action btn-vote btn-vote-route btn-vote-purple" data-plan="Plan 4" onclick="castVote('route', 'Plan 4', event)">
+                    🗳️ Vote Rute Ini
+                  </button>
+                </div>
+                <div class="card-vote-tally" id="voteTallyRoute-Plan4">
+                  <div class="vote-tally-header">
+                    <span class="vote-count-label" id="voteCountLabel-route-Plan4">0 suara (0%)</span>
+                    <span class="vote-status-badge" id="voteStatusBadge-route-Plan4">Belum ada suara</span>
+                  </div>
+                  <div class="vote-progress-track">
+                    <div class="vote-progress-fill" id="voteProgressFill-route-Plan4" style="width: 0%; background: linear-gradient(90deg, #7c3aed, #c084fc);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- PROGRESSIVE DISCLOSURE: COLLAPSIBLE DETAILED TIMELINE BUTTON -->
+      <div class="timeline-toggle-wrapper">
+        <button type="button" class="btn-action btn-timeline-toggle" id="btnToggleTimeline" onclick="toggleTimelineDetails()" aria-expanded="false" aria-controls="timelineCollapsibleSection">
+          <span class="toggle-text" id="timelineToggleLabel">🔍 Lihat Rincian Itinerary Jam per Jam</span>
+          <svg class="svg-icon" id="timelineToggleChevron" style="width: 20px; height: 20px; transition: transform 0.25s;" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+      </div>
+
+      <!-- COLLAPSIBLE TIMELINES CONTAINER (HIDDEN BY DEFAULT) -->
+      <div class="timeline-collapsible-section" id="timelineCollapsibleSection" style="display: none;">
+        
+        <!-- TIMELINE PLAN 2 (RECOMMENDED) -->
+        <div class="timeline-container" id="timelinePlan2">
+          <div class="timeline-card">
+            <div class="timeline-node node-emerald"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-emerald-soft">20:30 – 21:00 WIB</span>
+              <span class="timeline-metric-pill">Kediri (65 mdpl) • Titik Kumpul</span>
+            </div>
+            <h3 class="timeline-title">📍 Briefing Keberangkatan &amp; Cek Tekanan Ban</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Monumen_Simpang_Lima_Gumul_-_1.jpg/800px-Monumen_Simpang_Lima_Gumul_-_1.jpg" alt="Monumen Simpang Lima Gumul Kediri titik kumpul keberangkatan" class="timeline-thumb-img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80';">
+            <p class="timeline-desc">Kumpul di Simpang Lima Gumul Kediri. Pengecekan krusial 2 motor matic: tekanan ban, fungsi lampu sorot kabut, kampas rem, minyak rem DOT 4, dan jas hujan.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-sky"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-sky-soft">21:00 – 22:30 WIB (1j 30m)</span>
+              <span class="timeline-metric-pill">Kediri ➔ Ngantang (58 km)</span>
+            </div>
+            <h3 class="timeline-title">🛵 Etape 1: Kediri ➔ Pare ➔ Kandangan ➔ Ngantang</h3>
+            <p class="timeline-desc">Riding etape pertama melintasi rute Pare dan perbatasan Malang Barat. Aspal mulus berkelok dengan tanjakan bertahap menuju Selorejo.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-emerald"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-emerald-soft">22:30 – 22:50 WIB (20 mnt)</span>
+              <span class="timeline-metric-pill">SPBU Kaumrejo Ngantang</span>
+            </div>
+            <h3 class="timeline-title">⛽ Pitstop 1: Refuel Wajib &amp; Istirahat Hangat</h3>
+            <p class="timeline-desc">Pengisian BBM Pertalite full tank untuk 2 motor matic. Istirahat sejenak minum teh manis hangat sebelum memasuki kawasan dingin Pujon Pass.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-rose"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-rose-soft">22:50 – 00:15 WIB (1j 25m)</span>
+              <span class="timeline-metric-pill">Pujon Pass (1.180 mdpl) ➔ Batu</span>
+            </div>
+            <h3 class="timeline-title">⚠️ Etape 2: Melintasi Pujon Pass &amp; Turunan Kritis 970m Batu</h3>
+            <p class="timeline-desc">Zona paling kritis! Suhu dingin 14°C dan kabut tebal di Payung. Wajib menggunakan <em>engine brake</em> bergantian untuk mencegah <em>brake fade / vapour lock</em> di turunan 970m.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-sky"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-sky-soft">00:15 – 01:45 WIB (1j 30m)</span>
+              <span class="timeline-metric-pill">Batu ➔ Malang ➔ Gadang ➔ Turen ➔ Dampit</span>
+            </div>
+            <h3 class="timeline-title">🛣️ Etape 3: Bypass Kota Malang Menuju Koridor Selatan</h3>
+            <p class="timeline-desc">Gas terus melintasi Flyover Arjosari dan Gadang langsung menuju Turen dan Dampit saat lalu lintas kota Malang sangat sepi.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-emerald"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-emerald-soft">01:45 – 04:30 WIB (2j 45m!)</span>
+              <span class="timeline-metric-pill">Rest Area SPBU 54.651.17 Dampit</span>
+            </div>
+            <h3 class="timeline-title">🕌 REHAT UTAMA: Tidur Nyenyak &amp; Refuel di Dampit</h3>
+            <p class="timeline-desc">Rehat panjang dan tidur rebahan di serambi karpet Masjid Besar Baiturrahim / Rest Area SPBU Dampit. Meluruskan punggung, salat Subuh, dan memulihkan reflek tubuh 100%.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-amber"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-amber-soft">04:30 – 06:00 WIB (1j 30m)</span>
+              <span class="timeline-metric-pill">Dampit ➔ Tirtoyudo ➔ Pronojiwo (42 km)</span>
+            </div>
+            <h3 class="timeline-title">🌅 Etape 4 (Sunrise Ride): Dampit Menuju Base Tumpak Sewu</h3>
+            <p class="timeline-desc">Riding fajar menyongsong matahari terbit dengan udara pegunungan yang sangat sejuk. Tiba tepat waktu pukul 06:00 WIB saat loket wisata dibuka.</p>
+          </div>
+        </div>
+
+        <!-- TIMELINE PLAN 1 (TRANSIT MALANG) -->
+        <div class="timeline-container" id="timelinePlan1" style="display: none;">
+          <div class="timeline-card">
+            <div class="timeline-node node-sky"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-sky-soft">20:30 – 21:00 WIB</span>
+              <span class="timeline-metric-pill">Kediri • Titik Kumpul</span>
+            </div>
+            <h3 class="timeline-title">📍 Briefing Keberangkatan Rute Malang</h3>
+            <p class="timeline-desc">Briefing touring dan pengecekan kelayakan kendaraan di titik kumpul Simpang Lima Gumul Kediri.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-sky"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-sky-soft">21:00 – 00:30 WIB (3j 30m)</span>
+              <span class="timeline-metric-pill">Kediri ➔ Pujon Pass ➔ Malang Kota</span>
+            </div>
+            <h3 class="timeline-title">🛵 Etape 1: Kediri Menuju Malang via Pujon Pass</h3>
+            <p class="timeline-desc">Riding malam melintasi Ngantang, Payung Pujon (1.180m), dan turunan Batu menuju pusat Kota Malang.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-sky"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-sky-soft">00:30 – 03:15 WIB (2j 45m)</span>
+              <span class="timeline-metric-pill">Warkop 24 Jam Malang Kota</span>
+            </div>
+            <h3 class="timeline-title">☕ REHAT UTAMA: Hangout &amp; Istirahat di Kafe 24 Jam</h3>
+            <p class="timeline-desc">Transit santai di kafe modern 24 jam Malang (Roketto Coffee / Mang Ujo). Menikmati kopi, makanan hangat, dan mengisi daya baterai gawai.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-amber"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-amber-soft">03:15 – 06:00 WIB (2j 45m)</span>
+              <span class="timeline-metric-pill">Malang ➔ Dampit ➔ Pronojiwo (82 km)</span>
+            </div>
+            <h3 class="timeline-title">🌅 Etape 2 (Subuh Ride Panjang): Malang Menuju Pronojiwo</h3>
+            <p class="timeline-desc">Perjalanan subuh 82 km via Bululawang, Turen, dan Dampit untuk mengejar target tiba di Tumpak Sewu pukul 06:00 WIB.</p>
+          </div>
+        </div>
+
+        <!-- TIMELINE PLAN 3 (BLITAR DEEP SLEEP & RECOVERY) -->
+        <div class="timeline-container" id="timelinePlan3" style="display: none;">
+          <div class="timeline-card">
+            <div class="timeline-node node-amber"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-amber-soft">20:30 – 21:00 WIB</span>
+              <span class="timeline-metric-pill">Kediri (65 mdpl) • Titik Kumpul</span>
+            </div>
+            <h3 class="timeline-title">📍 Briefing Keberangkatan Rute Selatan Blitar</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Monumen_Simpang_Lima_Gumul_-_1.jpg/800px-Monumen_Simpang_Lima_Gumul_-_1.jpg" alt="Titik kumpul Simpang Lima Gumul Kediri" class="timeline-thumb-img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80';">
+            <p class="timeline-desc">Pemeriksaan armada motor untuk rute arteri selatan via Blitar. Bebas 100% dari hawa dingin ekstrem pegunungan.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-amber"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-amber-soft">21:00 – 22:15 WIB (1j 15m)</span>
+              <span class="timeline-metric-pill">Kediri ➔ Kras ➔ Blitar (42 km)</span>
+            </div>
+            <h3 class="timeline-title">🛵 Etape 1A: Kediri Menuju Blitar via Jalan Provinsi Landai</h3>
+            <p class="timeline-desc">Riding malam sangat santai dan stabil di aspal datar arteri selatan dengan kecepatan jelajah 45–55 km/jam.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-amber"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-amber-soft">22:15 – 22:35 WIB (20 mnt)</span>
+              <span class="timeline-metric-pill">SPBU Garum Blitar</span>
+            </div>
+            <h3 class="timeline-title">⛽ Pitstop 1: Refuel Wajib Full Tank &amp; Peregangan Otot</h3>
+            <p class="timeline-desc">Pengisian BBM Pertalite full tank di SPBU 24 Jam Garum Blitar. Konsumsi BBM sangat irit di jalur datar (~Rp 20.000/pax).</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-amber"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-amber-soft">22:35 – 00:00 WIB (1j 25m)</span>
+              <span class="timeline-metric-pill">Blitar ➔ Wlingi ➔ Karangkates (350m) ➔ Kepanjen</span>
+            </div>
+            <h3 class="timeline-title">🛣️ Etape 1B: Koridor Blitar Timur Menuju Kepanjen</h3>
+            <p class="timeline-desc">Melintasi aspal mulus Wlingi, Kesamben, dan Bendungan Karangkates (puncak elevasi tertinggi rute selatan, hanya ~350 mdpl).</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-amber"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-amber-soft">00:00 – 01:15 WIB (1j 15m)</span>
+              <span class="timeline-metric-pill">Kepanjen ➔ Gondanglegi ➔ Turen ➔ Dampit</span>
+            </div>
+            <h3 class="timeline-title">🛵 Etape 2: Kepanjen Langsung Menuju Rest Area Dampit</h3>
+            <p class="timeline-desc">Melintasi koridor Malang Selatan yang lurus dan sepi tengah malam untuk segera mencapai titik istirahat tidur di Dampit.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-emerald"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-emerald-soft">01:15 – 04:30 WIB (3j 15m!)</span>
+              <span class="timeline-metric-pill">Rest Area SPBU 54.651.17 Dampit &amp; Masjid Baiturrahim</span>
+            </div>
+            <h3 class="timeline-title">🛏️ REHAT UTAMA: Tidur Pulas &amp; Pemulihan Fisik Total</h3>
+            <p class="timeline-desc"><strong>3 JAM 15 MENIT TIDUR NYENYAK BERKUALITAS.</strong> Tidur selonjoran horizontal di serambi berkarpet bersih Masjid Baiturrahim Dampit / Rest Area SPBU 54.651.17 Dampit. Menghilangkan <em>sleep debt</em> sehingga fisik 100% segar bugar menuruni tebing Tumpak Sewu.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-amber"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-amber-soft">04:30 – 05:45 WIB (1j 15m)</span>
+              <span class="timeline-metric-pill">Dampit ➔ Tirtoyudo ➔ Pronojiwo (40 km)</span>
+            </div>
+            <h3 class="timeline-title">🌅 Etape 3 (Sunrise Ride Fajar): Dampit Menuju Tumpak Sewu</h3>
+            <p class="timeline-desc">Riding fajar singkat sejauh 40 km dengan fisik prima menyambut fajar perbukitan Semeru. Tiba on-time pukul 05:45 WIB.</p>
+          </div>
+        </div>
+
+        <!-- TIMELINE PLAN 4 (BLITAR WARKOP 24H & NIGHTLIFE CHILL) -->
+        <div class="timeline-container" id="timelinePlan4" style="display: none;">
+          <div class="timeline-card">
+            <div class="timeline-node node-purple"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-purple-soft">20:30 – 21:00 WIB</span>
+              <span class="timeline-metric-pill">Kediri (KM 0) • Titik Kumpul</span>
+            </div>
+            <h3 class="timeline-title">📍 Briefing Keberangkatan &amp; Convoy Plan 4</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Monumen_Simpang_Lima_Gumul_-_1.jpg/800px-Monumen_Simpang_Lima_Gumul_-_1.jpg" alt="Monumen Simpang Lima Gumul Kediri titik kumpul keberangkatan Plan 4" class="timeline-thumb-img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80';">
+            <p class="timeline-desc">Pengecekan perlengkapan malam, gadget charger, dan formasi berkendara santai menuju Kota Blitar.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-purple"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-purple-soft">21:00 – 22:15 WIB (1j 15m)</span>
+              <span class="timeline-metric-pill">Kediri ➔ Kras ➔ Blitar Kota (42 km)</span>
+            </div>
+            <h3 class="timeline-title">🛵 Etape 1: Kediri Menuju Kafe 24 Jam Kota Blitar</h3>
+            <p class="timeline-desc">Etape awal sangat pendek (42 km) di jalur datar beraspal mulus. Tiba di Kota Blitar pukul 22:15 WIB.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-purple"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-purple-soft">22:15 – 02:30 WIB (4j 15m!)</span>
+              <span class="timeline-metric-pill">Roketto Coffee / Warkop Agam Blitar</span>
+            </div>
+            <h3 class="timeline-title">☕ REHAT UTAMA: Warkop 24 Jam, Kuliner Malam &amp; Hangout</h3>
+            <p class="timeline-desc"><strong>4 JAM 15 MENIT NONGKRONG &amp; CHILL MAKSIMAL.</strong> Pilihan kafe terverifikasi: <em>Roketto Coffee &amp; Co</em> (Jl. Veteran 141) atau <em>Warkop Agam Patria</em> (Jl. Mastrip). Menikmati kopi specialty, Mie Bangladesh, Teh Tarik, Wi-Fi kencang, charging gawai, dan diskusi santai hingga larut malam.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-purple"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-purple-soft">02:30 – 04:45 WIB (2j 15m)</span>
+              <span class="timeline-metric-pill">Blitar ➔ Wlingi ➔ Karangkates ➔ Dampit (76 km)</span>
+            </div>
+            <h3 class="timeline-title">🛣️ Etape 2 (Midnight Ride Sejuk): Blitar Menuju Dampit</h3>
+            <p class="timeline-desc">Riding tengah malam di jalanan Blitar Timur–Kepanjen yang sangat sepi dan lengang. Suhu sejuk tanpa dingin ekstrem pegunungan.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-purple"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-purple-soft">04:45 – 05:00 WIB (15 mnt)</span>
+              <span class="timeline-metric-pill">Masjid Baiturrahim Dampit (KM 118)</span>
+            </div>
+            <h3 class="timeline-title">🕌 Quick Pitstop: Salat Subuh &amp; Cuci Muka</h3>
+            <p class="timeline-desc">Istirahat singkat 15 menit, salat Subuh berjamaah, dan cuci muka segar di Masjid Besar Baiturrahim Dampit.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-node node-purple"></div>
+            <div class="timeline-header">
+              <span class="timeline-time-badge badge-purple-soft">05:00 – 06:00 WIB (1 jam)</span>
+              <span class="timeline-metric-pill">Dampit ➔ Pronojiwo (40 km)</span>
+            </div>
+            <h3 class="timeline-title">🌅 Etape 3 (Sunrise Ride): Menembus Gerbang Tumpak Sewu</h3>
+            <p class="timeline-desc">Riding fajar menyongsong matahari terbit berlatar panorama Gunung Semeru. Tiba tepat pukul 06:00 WIB saat loket wisata dibuka.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>

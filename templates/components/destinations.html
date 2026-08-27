@@ -1,0 +1,616 @@
+<section id="section-destinations" class="section-block">
+      <div class="section-header">
+        <span class="section-tag" style="color: var(--sky-400);">DESTINASI KEDUA &amp; IN-CONTEXT VOTING</span>
+        <h2 class="section-title">🏞️ Kartu Pilihan Destinasi Kedua (Plus &amp; Minus)</h2>
+        <p class="section-desc">
+          Setelah menyelesaikan trekking utama Tumpak Sewu, tentukan destinasi kedua rombongan. Setiap opsi memiliki karakteristik fisik, jarak, dan budget yang berbeda. Gunakan tombol <strong>Vote Destinasi Ini</strong> untuk memilih opsi favorit Anda.
+        </p>
+      </div>
+
+      <!-- QUICK JUMP PILLS (DESTINASI KEDUA) -->
+      <div class="dest-carousel-nav" id="destCarouselNav">
+        <button type="button" class="dest-pill-btn active" onclick="scrollToDestCard(0)">
+          <span>🌊 Goa Tetes</span>
+          <span class="dest-pill-dist">0 km</span>
+        </button>
+        <button type="button" class="dest-pill-btn" onclick="scrollToDestCard(1)">
+          <span>⛰️ Kapas Biru</span>
+          <span class="dest-pill-dist">4.5 km</span>
+        </button>
+        <button type="button" class="dest-pill-btn" onclick="scrollToDestCard(2)">
+          <span>🌈 Kabut Pelangi</span>
+          <span class="dest-pill-dist">6.5 km</span>
+        </button>
+        <button type="button" class="dest-pill-btn" onclick="scrollToDestCard(3)">
+          <span>🏖️ Pantai Selatan</span>
+          <span class="dest-pill-dist">60 km</span>
+        </button>
+        <button type="button" class="dest-pill-btn" onclick="scrollToDestCard(4)">
+          <span>🌅 Bromo Sunrise</span>
+          <span class="dest-pill-dist">115 km</span>
+        </button>
+        <button type="button" class="dest-pill-btn" onclick="scrollToDestCard(5)">
+          <span>🌿 Teras Semeru</span>
+          <span class="dest-pill-dist">4.5 km</span>
+        </button>
+      </div>
+
+      <!-- CAROUSEL CONTROLS BAR (MOBILE HELPER) -->
+      <div class="dest-carousel-toolbar">
+        <div class="dest-carousel-indicator">
+          <span>Geser kartu ke samping ➔</span> (<span id="destCurrentIndex" style="color: var(--sky-400); font-weight: 800;">1</span> dari 6)
+        </div>
+        <div class="dest-carousel-arrows">
+          <button type="button" class="dest-arrow-btn" onclick="slideDestCard(-1)" aria-label="Destinasi Sebelumnya">❮</button>
+          <button type="button" class="dest-arrow-btn" onclick="slideDestCard(1)" aria-label="Destinasi Berikutnya">❯</button>
+        </div>
+      </div>
+
+      <div class="destinations-grid" id="destinationsGrid">
+
+        <!-- CARD 1: GOA TETES & TERAS SEMERU -->
+        <div class="dest-card" data-dest="Goa Tetes">
+          <div>
+            <div class="dest-top-badges">
+              <span class="badge-effort low">
+                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Effort: Sedang (0 km Loop)
+              </span>
+              <span class="badge-tag">Gua Karst &amp; Saung</span>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Goa_tetes.png"
+                 alt="Foto Asli Formasi Karst dan Mata Air Alami Goa Tetes Pronojiwo"
+                 class="dest-card-img"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Tumpak_sewu_waterfall.jpg/1280px-Tumpak_sewu_waterfall.jpg';">
+            <h3 class="dest-title">Opsi A: Goa Tetes (Gua Karst)</h3>
+            <div class="dest-specs">
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Tiket Masuk</span>
+                <span class="dest-spec-val" style="color: var(--emerald-400);">Rp 0 (Termasuk Tiket)</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Jarak dari Tumpak Sewu</span>
+                <span class="dest-spec-val">0 km (Loop Dasar Tebing)</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Parkir Motor</span>
+                <span class="dest-spec-val">Rp 5.000 / motor</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Waktu Perjalanan</span>
+                <span class="dest-spec-val">0–10 menit (Jalan Kaki)</span>
+              </div>
+            </div>
+            <p class="dest-desc">
+              Loop trekking terpadu menyusuri dinding karst travertine keemasan, stalaktit aktif, dan tetesan air belerang alami tepat di bawah tebing Tumpak Sewu.
+            </p>
+          </div>
+
+          <div>
+            <button type="button" class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span>Lihat Kelebihan &amp; Kekurangan</span>
+              <svg class="svg-icon accordion-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <div class="pro-con-box">
+                <div>
+                  <strong style="color: var(--emerald-400); font-size: 0.8rem; text-transform: uppercase;">Kelebihan (Plus):</strong>
+                  <ul class="pro-list" style="margin-top: 4px;">
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Hemat Biaya:</strong> Tiket sudah terpadu Rp 0 biaya tiket tambahan.</span></li>
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Nol Perjalanan Motor:</strong> Langsung diakses dari dasar tebing tanpa perlu motoran lagi.</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <strong style="color: var(--rose-400); font-size: 0.8rem; text-transform: uppercase;">Kekurangan (Minus):</strong>
+                  <ul class="con-list" style="margin-top: 4px;">
+                    <li class="con-item"><span class="bullet-icon">➖</span><span><strong>Jalur Licin:</strong> Memerlukan kehati-hatian ekstra di bebatuan kapur berair.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+                                    <!-- EXTERNAL DISCOVERY: MAPS, IG, TIKTOK -->
+            <div class="dest-external-links">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Goa+Tetes+Sidomulyo+Pronojiwo+Lumajang" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-maps" title="Buka Rute Navigasi Langsung di Google Maps">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Maps</span>
+              </a>
+              <a href="https://www.instagram.com/explore/tags/goatetes/" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-ig" title="Cari Foto & Video di Instagram">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.tiktok.com/search?q=Goa%20Tetes%20Lumajang" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-tiktok" title="Cari Video Review di TikTok">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-2.04-.52 4.83 4.83 0 0 1-2-2.2V6.69z"/></svg>
+                <span>TikTok</span>
+              </a>
+            </div>
+
+            <!-- IN-CARD VOTE BUTTON & TALLY -->
+            <button type="button" class="btn-action btn-vote btn-vote-dest btn-vote-primary" style="width: 100%; margin-top: 10px;" data-dest="Goa Tetes" onclick="castVote('destination', 'Goa Tetes', event)">
+              🗳️ Vote Destinasi Ini
+            </button>
+            <div class="card-vote-tally" id="voteTallyDest-GoaTetes">
+              <div class="vote-tally-header">
+                <span class="vote-count-label" id="voteCountLabel-dest-GoaTetes">0 pemilih (0%)</span>
+                <span class="vote-status-badge" id="voteStatusBadge-dest-GoaTetes">Belum ada suara</span>
+              </div>
+              <div class="vote-progress-track">
+                <div class="vote-progress-fill" id="voteProgressFill-dest-GoaTetes" style="width: 0%; background: linear-gradient(90deg, #0ea5e9, #38bdf8);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+                <!-- CARD 2: COBAN KAPAS BIRU (TOP RECOMMENDED) -->
+        <div class="dest-card featured-card" data-dest="Coban Kapas Biru">
+          <div>
+            <div class="dest-top-badges">
+              <span class="badge-effort low">
+                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Effort: Sangat Ringan (Low)
+              </span>
+              <span class="badge-tag" style="background: var(--emerald-bg); color: var(--emerald-400); border: 1px solid var(--emerald-border);">👑 TOP RECOMMENDED</span>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Keindahaan_air_terjuncdi_lereng_semeru.jpg/1280px-Keindahaan_air_terjuncdi_lereng_semeru.jpg"
+                 alt="Foto Asli Air Terjun Coban Kapas Biru Lereng Semeru Pronojiwo"
+                 class="dest-card-img"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Tumpak_sewu_waterfall.jpg/1280px-Tumpak_sewu_waterfall.jpg';">
+            <h3 class="dest-title">Opsi D: Coban Kapas Biru (Gardu Panorama)</h3>
+            <div class="dest-specs">
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Tiket Masuk</span>
+                <span class="dest-spec-val">Rp 10.000 / pax</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Jarak dari Tumpak Sewu</span>
+                <span class="dest-spec-val">±4.5 km (~10–15 mnt)</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Parkir Motor</span>
+                <span class="dest-spec-val">Rp 5.000 / motor</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Akses Jalan Kaki</span>
+                <span class="dest-spec-val">150 Meter Datar di Gardu Panorama (5 mnt)</span>
+              </div>
+            </div>
+            <p class="dest-desc">
+              Gardu pandang kayu estetik menyuguhkan kemegahan Air Terjun Kapas Biru 100m bertingkat dua dengan latar puncak Gunung Semeru tanpa perlu menuruni tebing terjal.
+            </p>
+          </div>
+
+          <div>
+            <button type="button" class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span>Lihat Kelebihan &amp; Kekurangan</span>
+              <svg class="svg-icon accordion-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <div class="pro-con-box">
+                <div>
+                  <strong style="color: var(--emerald-400); font-size: 0.8rem; text-transform: uppercase;">Kelebihan (Plus):</strong>
+                  <ul class="pro-list" style="margin-top: 4px;">
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Foto Ikonik Spektakuler:</strong> View air terjun + Semeru sekaligus dalam 1 frame.</span></li>
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Nol Kelelahan Fisik:</strong> Cukup jalan kaki 5 menit di paving datar, aman untuk rombongan.</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <strong style="color: var(--rose-400); font-size: 0.8rem; text-transform: uppercase;">Kekurangan (Minus):</strong>
+                  <ul class="con-list" style="margin-top: 4px;">
+                    <li class="con-item"><span class="bullet-icon">➖</span><span><strong>Gardu Pandang Atas:</strong> Menikmati dari atas tebing, tidak menyentuh dasar air terjun.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- EXTERNAL DISCOVERY: MAPS, IG, TIKTOK -->
+            <div class="dest-external-links">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Air+Terjun+Kapas+Biru+Pronojiwo+Lumajang" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-maps" title="Buka Rute Navigasi Langsung di Google Maps">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Maps</span>
+              </a>
+              <a href="https://www.instagram.com/explore/tags/cobankapasbiru/" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-ig" title="Cari Foto & Video di Instagram">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.tiktok.com/search?q=Coban%20Kapas%20Biru%20Lumajang" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-tiktok" title="Cari Video Review di TikTok">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-2.04-.52 4.83 4.83 0 0 1-2-2.2V6.69z"/></svg>
+                <span>TikTok</span>
+              </a>
+            </div>
+
+            <!-- IN-CARD VOTE BUTTON & TALLY -->
+            <button type="button" class="btn-action btn-vote btn-vote-dest btn-vote-emerald" style="width: 100%; margin-top: 10px;" data-dest="Coban Kapas Biru" onclick="castVote('destination', 'Coban Kapas Biru', event)">
+              🗳️ Vote Destinasi Ini
+            </button>
+            <div class="card-vote-tally" id="voteTallyDest-CobanKapasBiru">
+              <div class="vote-tally-header">
+                <span class="vote-count-label" id="voteCountLabel-dest-CobanKapasBiru">0 pemilih (0%)</span>
+                <span class="vote-status-badge" id="voteStatusBadge-dest-CobanKapasBiru">Belum ada suara</span>
+              </div>
+              <div class="vote-progress-track">
+                <div class="vote-progress-fill" id="voteProgressFill-dest-CobanKapasBiru" style="width: 0%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: AIR TERJUN KABUT PELANGI (SEPARATE DEDICATED CARD) -->
+        <div class="dest-card" data-dest="Kabut Pelangi">
+          <div>
+            <div class="dest-top-badges">
+              <span class="badge-effort medium">
+                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Effort: Menengah (Trek Lembah)
+              </span>
+              <span class="badge-tag" style="background: rgba(6, 182, 212, 0.15); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.35);">🌈 BIASAN PELANGI ALAMI</span>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Air_terjun_kabut_pelangi.jpg/1280px-Air_terjun_kabut_pelangi.jpg"
+                 alt="Foto Asli Air Terjun Kabut Pelangi Lembah Curam Glidik Pronojiwo"
+                 class="dest-card-img"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Tumpak_sewu_waterfall.jpg/1280px-Tumpak_sewu_waterfall.jpg';">
+            <h3 class="dest-title">Opsi E: Air Terjun Kabut Pelangi</h3>
+            <div class="dest-specs">
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Tiket Masuk</span>
+                <span class="dest-spec-val">Rp 10.000 / pax</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Jarak dari Tumpak Sewu</span>
+                <span class="dest-spec-val">±6.5 km (~15–20 mnt)</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Parkir Motor</span>
+                <span class="dest-spec-val">Rp 5.000 / motor</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Akses Trekking</span>
+                <span class="dest-spec-val">Jalan Kaki Lembah Tanah (~25 mnt)</span>
+              </div>
+            </div>
+            <p class="dest-desc">
+              Air terjun eksotis 100m di lembah Pronojiwo. Diberkahi fenomena optik alami berupa pelangi abadi di tengah butiran kabut air saat tersorot cahaya matahari pagi.
+            </p>
+          </div>
+
+          <div>
+            <button type="button" class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span>Lihat Kelebihan &amp; Kekurangan</span>
+              <svg class="svg-icon accordion-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <div class="pro-con-box">
+                <div>
+                  <strong style="color: var(--emerald-400); font-size: 0.8rem; text-transform: uppercase;">Kelebihan (Plus):</strong>
+                  <ul class="pro-list" style="margin-top: 4px;">
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Biasan Pelangi Alami:</strong> Fenomena pelangi di butiran kabut air terjun pagi hari.</span></li>
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Alami &amp; Asri:</strong> Suasana lembah sejuk dan belum sepadat wisata utama.</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <strong style="color: var(--rose-400); font-size: 0.8rem; text-transform: uppercase;">Kekurangan (Minus):</strong>
+                  <ul class="con-list" style="margin-top: 4px;">
+                    <li class="con-item"><span class="bullet-icon">➖</span><span><strong>Trekking Menurun &amp; Mendaki:</strong> Trekking tanah licin 25 menit yang cukup menguras stamina.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- EXTERNAL DISCOVERY: MAPS, IG, TIKTOK -->
+            <div class="dest-external-links">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Air+Terjun+Kabut+Pelangi+Pronojiwo+Lumajang" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-maps" title="Buka Rute Navigasi Langsung di Google Maps">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Maps</span>
+              </a>
+              <a href="https://www.instagram.com/explore/tags/kabutpelangi/" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-ig" title="Cari Foto & Video di Instagram">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.tiktok.com/search?q=Air%20Terjun%20Kabut%20Pelangi%20Lumajang" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-tiktok" title="Cari Video Review di TikTok">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-2.04-.52 4.83 4.83 0 0 1-2-2.2V6.69z"/></svg>
+                <span>TikTok</span>
+              </a>
+            </div>
+
+            <!-- IN-CARD VOTE BUTTON & TALLY -->
+            <button type="button" class="btn-action btn-vote btn-vote-dest" style="width: 100%; margin-top: 10px; background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); color: #fff; border-color: rgba(6, 182, 212, 0.5);" data-dest="Kabut Pelangi" onclick="castVote('destination', 'Kabut Pelangi', event)">
+              🗳️ Vote Destinasi Ini
+            </button>
+            <div class="card-vote-tally" id="voteTallyDest-KabutPelangi">
+              <div class="vote-tally-header">
+                <span class="vote-count-label" id="voteCountLabel-dest-KabutPelangi">0 pemilih (0%)</span>
+                <span class="vote-status-badge" id="voteStatusBadge-dest-KabutPelangi">Belum ada suara</span>
+              </div>
+              <div class="vote-progress-track">
+                <div class="vote-progress-fill" id="voteProgressFill-dest-KabutPelangi" style="width: 0%; background: linear-gradient(90deg, #0891b2, #06b6d4);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: PANTAI SELATAN MALANG / JLS -->
+        <div class="dest-card" data-dest="Pantai Selatan Malang">
+          <div>
+            <div class="dest-top-badges">
+              <span class="badge-effort low">
+                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Effort: Sangat Ringan (Low)
+              </span>
+              <span class="badge-tag">Pesisir JLS &amp; Seafood</span>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Wisata-pantai-balekambang.jpg/1280px-Wisata-pantai-balekambang.jpg"
+                 alt="Foto Asli Pura Ismoyo dan Jembatan Pantai Balekambang Malang Selatan"
+                 class="dest-card-img"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Mount_Bromo_at_sunrise%2C_showing_its_volcanoes_and_Mount_Semeru_%28background%29.jpg/1280px-Mount_Bromo_at_sunrise%2C_showing_its_volcanoes_and_Mount_Semeru_%28background%29.jpg';">
+            <h3 class="dest-title">Opsi C: Pantai Selatan Malang &amp; JLS</h3>
+            <div class="dest-specs">
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Tiket Masuk</span>
+                <span class="dest-spec-val">Rp 10.000 – Rp 15.000 / pax</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Jarak dari Tumpak Sewu</span>
+                <span class="dest-spec-val">±55 – 65 km via Dampit</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Parkir Motor</span>
+                <span class="dest-spec-val">Rp 5.000 / motor</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Waktu Perjalanan</span>
+                <span class="dest-spec-val">1.5 – 2.0 jam (Riding Santai)</span>
+              </div>
+            </div>
+            <p class="dest-desc">
+              Pesisir pasir putih mempesona di Jalur Lintas Selatan (JLS): Pantai Balekambang (pura pulau karang) atau Teluk Asmara, diiringi kuliner ikan bakar segar.
+            </p>
+          </div>
+
+          <div>
+            <button type="button" class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span>Lihat Kelebihan &amp; Kekurangan</span>
+              <svg class="svg-icon accordion-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <div class="pro-con-box">
+                <div>
+                  <strong style="color: var(--emerald-400); font-size: 0.8rem; text-transform: uppercase;">Kelebihan (Plus):</strong>
+                  <ul class="pro-list" style="margin-top: 4px;">
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Relaksasi Total:</strong> Angin laut sepoi-sepoi dan santap seafood bakar memulihkan stamina turing.</span></li>
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Jalur JLS Mulus:</strong> Aspal lebar dan pemandangan samudera terbuka.</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <strong style="color: var(--rose-400); font-size: 0.8rem; text-transform: uppercase;">Kekurangan (Minus):</strong>
+                  <ul class="con-list" style="margin-top: 4px;">
+                    <li class="con-item"><span class="bullet-icon">➖</span><span><strong>Jarak Berkendara:</strong> Memerlukan waktu tempuh ~1.5 jam dari Dampit.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+                                    <!-- EXTERNAL DISCOVERY: MAPS, IG, TIKTOK -->
+            <div class="dest-external-links">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Pantai+Balekambang+Malang+Selatan" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-maps" title="Buka Rute Navigasi Langsung di Google Maps">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Maps</span>
+              </a>
+              <a href="https://www.instagram.com/explore/tags/pantaibalekambang/" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-ig" title="Cari Foto & Video di Instagram">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.tiktok.com/search?q=Pantai%20Balekambang%20Malang" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-tiktok" title="Cari Video Review di TikTok">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-2.04-.52 4.83 4.83 0 0 1-2-2.2V6.69z"/></svg>
+                <span>TikTok</span>
+              </a>
+            </div>
+
+            <!-- IN-CARD VOTE BUTTON & TALLY -->
+            <button type="button" class="btn-action btn-vote btn-vote-dest btn-vote-amber" style="width: 100%; margin-top: 10px;" data-dest="Pantai Selatan Malang" onclick="castVote('destination', 'Pantai Selatan Malang', event)">
+              🗳️ Vote Destinasi Ini
+            </button>
+            <div class="card-vote-tally" id="voteTallyDest-PantaiSelatanMalang">
+              <div class="vote-tally-header">
+                <span class="vote-count-label" id="voteCountLabel-dest-PantaiSelatanMalang">0 pemilih (0%)</span>
+                <span class="vote-status-badge" id="voteStatusBadge-dest-PantaiSelatanMalang">Belum ada suara</span>
+              </div>
+              <div class="vote-progress-track">
+                <div class="vote-progress-fill" id="voteProgressFill-dest-PantaiSelatanMalang" style="width: 0%; background: linear-gradient(90deg, #f59e0b, #fbbf24);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: BROMO SUNRISE / TNBTS -->
+        <div class="dest-card" data-dest="Bromo Sunrise">
+          <div>
+            <div class="dest-top-badges">
+              <span class="badge-effort medium">
+                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Effort: Menengah (2.200m)
+              </span>
+              <span class="badge-tag" style="background: var(--purple-bg); color: #c084fc; border: 1px solid var(--purple-border);">Ekspedisi TNBTS</span>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Mount_Bromo_at_sunrise%2C_showing_its_volcanoes_and_Mount_Semeru_%28background%29.jpg/1280px-Mount_Bromo_at_sunrise%2C_showing_its_volcanoes_and_Mount_Semeru_%28background%29.jpg"
+                 alt="Foto Asli Sunrise Kaldera Bromo, Gunung Batok dan Puncak Mahameru"
+                 class="dest-card-img"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mount_Semeru.jpg/1280px-Mount_Semeru.jpg';">
+            <h3 class="dest-title">Opsi B: Bromo Sunrise / TNBTS</h3>
+            <div class="dest-specs">
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Tiket TNBTS</span>
+                <span class="dest-spec-val">Rp 29.000 – Rp 34.000 / pax</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Jarak dari Tumpak Sewu</span>
+                <span class="dest-spec-val">±65 – 85 km via Senduro</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Parkir Motor</span>
+                <span class="dest-spec-val">Rp 5.000 – Rp 10.000 / motor</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Waktu Perjalanan</span>
+                <span class="dest-spec-val">2.5 – 3.5 jam (Pegunungan)</span>
+              </div>
+            </div>
+            <p class="dest-desc">
+              Perluasan ekspedisi menuju Kaldera Bromo Tengger Semeru: lautan pasir berbisik, kawah aktif, dan panorama matahari terbit Penanjakan yang legendaris.
+            </p>
+          </div>
+
+          <div>
+            <button type="button" class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span>Lihat Kelebihan &amp; Kekurangan</span>
+              <svg class="svg-icon accordion-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <div class="pro-con-box">
+                <div>
+                  <strong style="color: var(--emerald-400); font-size: 0.8rem; text-transform: uppercase;">Kelebihan (Plus):</strong>
+                  <ul class="pro-list" style="margin-top: 4px;">
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Pemandangan Kelas Dunia:</strong> Panorama kaldera vulkanik terindah di Jawa Timur.</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <strong style="color: var(--rose-400); font-size: 0.8rem; text-transform: uppercase;">Kekurangan (Minus):</strong>
+                  <ul class="con-list" style="margin-top: 4px;">
+                    <li class="con-item"><span class="bullet-icon">➖</span><span><strong>Suhu Dingin Ekstrem:</strong> Memerlukan jaket tebal berlapis (suhu 5°–10°C di kaldera).</span></li>
+                    <li class="con-item"><span class="bullet-icon">➖</span><span><strong>Jarak Lebih Jauh:</strong> Lebih cocok untuk ekstensi trip menginap.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+                                    <!-- EXTERNAL DISCOVERY: MAPS, IG, TIKTOK -->
+            <div class="dest-external-links">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Gunung+Bromo+TNBTS+Jawa+Timur" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-maps" title="Buka Rute Navigasi Langsung di Google Maps">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Maps</span>
+              </a>
+              <a href="https://www.instagram.com/explore/tags/gunungbromo/" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-ig" title="Cari Foto & Video di Instagram">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.tiktok.com/search?q=Bromo%20Sunrise%20TNBTS" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-tiktok" title="Cari Video Review di TikTok">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-2.04-.52 4.83 4.83 0 0 1-2-2.2V6.69z"/></svg>
+                <span>TikTok</span>
+              </a>
+            </div>
+
+            <!-- IN-CARD VOTE BUTTON & TALLY -->
+            <button type="button" class="btn-action btn-vote btn-vote-dest btn-vote-purple" style="width: 100%; margin-top: 10px;" data-dest="Bromo Sunrise" onclick="castVote('destination', 'Bromo Sunrise', event)">
+              🗳️ Vote Destinasi Ini
+            </button>
+            <div class="card-vote-tally" id="voteTallyDest-BromoSunrise">
+              <div class="vote-tally-header">
+                <span class="vote-count-label" id="voteCountLabel-dest-BromoSunrise">0 pemilih (0%)</span>
+                <span class="vote-status-badge" id="voteStatusBadge-dest-BromoSunrise">Belum ada suara</span>
+              </div>
+              <div class="vote-progress-track">
+                <div class="vote-progress-fill" id="voteProgressFill-dest-BromoSunrise" style="width: 0%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 6: TERAS SEMERU SUMBERURIP -->
+        <div class="dest-card" data-dest="Teras Semeru">
+          <div>
+            <div class="dest-top-badges">
+              <span class="badge-effort low">
+                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Effort: Sangat Ringan (Low)
+              </span>
+              <span class="badge-tag" style="background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.35);">🏔️ VIEW MEGAH SEMERU</span>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mount_Semeru.jpg/1280px-Mount_Semeru.jpg"
+                 alt="Foto Asli Lanskap Puncak Semeru dari Desa Wisata Sumberurip Pronojiwo"
+                 class="dest-card-img"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Mount_Bromo_at_sunrise%2C_showing_its_volcanoes_and_Mount_Semeru_%28background%29.jpg/1280px-Mount_Bromo_at_sunrise%2C_showing_its_volcanoes_and_Mount_Semeru_%28background%29.jpg';">
+            <h3 class="dest-title">Opsi F: Teras Semeru Sumberurip</h3>
+            <div class="dest-specs">
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Tiket Masuk</span>
+                <span class="dest-spec-val" style="color: var(--emerald-400);">Rp 5.000 – Rp 10.000 / pax</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Jarak dari Tumpak Sewu</span>
+                <span class="dest-spec-val">±4.5 km (~10–15 mnt)</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Parkir Motor</span>
+                <span class="dest-spec-val">Rp 5.000 / motor</span>
+              </div>
+              <div class="dest-spec-item">
+                <span class="dest-spec-lbl">Akses Jalan Kaki</span>
+                <span class="dest-spec-val">50 Meter Paving ke Gazebo Sawah</span>
+              </div>
+            </div>
+            <p class="dest-desc">
+              Spot santai estetik di tengah persawahan Desa Wisata Sumberurip berlatar belakang puncak Gunung Semeru. Dilengkapi gazebo kayu, angkringan kopi, dan nol kelelahan fisik.
+            </p>
+          </div>
+
+          <div>
+            <button type="button" class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span>Lihat Kelebihan &amp; Kekurangan</span>
+              <svg class="svg-icon accordion-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <div class="pro-con-box">
+                <div>
+                  <strong style="color: var(--emerald-400); font-size: 0.8rem; text-transform: uppercase;">Kelebihan (Plus):</strong>
+                  <ul class="pro-list" style="margin-top: 4px;">
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Panorama Semeru Terbuka:</strong> View langsung ke kerucut Semeru tanpa halangan tebing.</span></li>
+                    <li class="pro-item"><span class="bullet-icon">➕</span><span><strong>Santai Tanpa Trekking:</strong> Sangat ramah pemulihan fisik setelah lelah trekking Tumpak Sewu.</span></li>
+                  </ul>
+                </div>
+                <div>
+                  <strong style="color: var(--rose-400); font-size: 0.8rem; text-transform: uppercase;">Kekurangan (Minus):</strong>
+                  <ul class="con-list" style="margin-top: 4px;">
+                    <li class="con-item"><span class="bullet-icon">➖</span><span><strong>Bukan Air Terjun:</strong> Wisata panorama alam sawah dan kafe/gazebo santai.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- EXTERNAL DISCOVERY: MAPS, IG, TIKTOK -->
+            <div class="dest-external-links">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Teras+Semeru+Sumberurip+Pronojiwo+Lumajang" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-maps" title="Buka Rute Navigasi Langsung di Google Maps">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Maps</span>
+              </a>
+              <a href="https://www.instagram.com/explore/tags/terassemeru/" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-ig" title="Cari Foto & Video di Instagram">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.tiktok.com/search?q=Teras%20Semeru%20Pronojiwo" target="_blank" rel="noopener noreferrer" class="btn-dest-link btn-dest-tiktok" title="Cari Video Review di TikTok">
+                <svg style="width:13px;height:13px;fill:currentColor;" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-2.04-.52 4.83 4.83 0 0 1-2-2.2V6.69z"/></svg>
+                <span>TikTok</span>
+              </a>
+            </div>
+
+            <!-- IN-CARD VOTE BUTTON & TALLY -->
+            <button type="button" class="btn-action btn-vote btn-vote-dest" style="width: 100%; margin-top: 10px; background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%); color: #fff; border-color: rgba(244, 63, 94, 0.5);" data-dest="Teras Semeru" onclick="castVote('destination', 'Teras Semeru', event)">
+              🗳️ Vote Destinasi Ini
+            </button>
+            <div class="card-vote-tally" id="voteTallyDest-TerasSemeru">
+              <div class="vote-tally-header">
+                <span class="vote-count-label" id="voteCountLabel-dest-TerasSemeru">0 pemilih (0%)</span>
+                <span class="vote-status-badge" id="voteStatusBadge-dest-TerasSemeru">Belum ada suara</span>
+              </div>
+              <div class="vote-progress-track">
+                <div class="vote-progress-fill" id="voteProgressFill-dest-TerasSemeru" style="width: 0%; background: linear-gradient(90deg, #e11d48, #f43f5e);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>

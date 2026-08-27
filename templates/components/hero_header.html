@@ -1,0 +1,79 @@
+<header class="hero-section">
+  <div class="container">
+    
+    <div class="hero-badge">
+      <span>🤖</span>
+      <span>Travel Plan Disusun oleh AI, Hanya Gunakan sebagai Baseline</span>
+    </div>
+    
+    <h1 class="hero-title">Ekspedisi Motor Kediri ➔ Tumpak Sewu</h1>
+    
+    <p class="hero-subtitle">
+      Panduan taktis perjalanan 1 hari (Kediri – Lumajang PP) untuk <strong>4 orang (2 motor)</strong>. Dilengkapi visualisasi peta Leaflet GIS, simulasi elevasi bahaya rem blong, kalkulator biaya otomatis, dan sistem in-context voting live terpadu.
+    </p>
+
+    <!-- VOTER PROFILE & BACKEND CONNECTION BAR -->
+    <div class="voter-profile-bar" id="voterProfileBar">
+      <div class="voter-identity-box">
+        <div class="voter-avatar" id="voterAvatarIcon">👤</div>
+        <div>
+          <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">Identitas Pemilih:</span>
+          <strong id="currentVoterDisplay" style="color: var(--sky-400); font-size: 0.95rem; cursor: pointer;" onclick="promptVoterModal()">Tamu Ekspedisi (Klik untuk Isi Nama)</strong>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <div class="voter-status-indicator">
+          <span class="status-dot" id="serverStatusDot"></span>
+          <span id="serverStatusText">Sinkronisasi Real-time</span>
+        </div>
+        <button type="button" class="btn-action btn-sm btn-outline" id="btnChangeVoterName" onclick="promptVoterModal()">
+          ✏️ Ganti Nama
+        </button>
+      </div>
+    </div>
+
+    <!-- KEY STATS PILLS (STATIC METADATA) -->
+    <div class="stats-grid">
+      <div class="stat-pill">
+        <div class="stat-icon-box" style="background: var(--sky-bg); color: var(--sky-400);">
+          <svg class="svg-icon" style="width:20px;height:20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div>
+          <div class="stat-val">158–180 km</div>
+          <div class="stat-lbl">Jarak Sekali Jalan</div>
+        </div>
+      </div>
+
+      <div class="stat-pill">
+        <div class="stat-icon-box" style="background: var(--emerald-bg); color: var(--emerald-400);">
+          <svg class="svg-icon" style="width:20px;height:20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        </div>
+        <div>
+          <div class="stat-val">350–1.180m</div>
+          <div class="stat-lbl">Puncak Elevasi</div>
+        </div>
+      </div>
+
+      <div class="stat-pill">
+        <div class="stat-icon-box" style="background: var(--amber-bg); color: var(--amber-400);">
+          <svg class="svg-icon" style="width:20px;height:20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+        </div>
+        <div>
+          <div class="stat-val">06:00 WIB</div>
+          <div class="stat-lbl">Target Tiba Loket</div>
+        </div>
+      </div>
+
+      <div class="stat-pill">
+        <div class="stat-icon-box" style="background: var(--rose-bg); color: var(--rose-400);">
+          <svg class="svg-icon" style="width:20px;height:20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+        </div>
+        <div>
+          <div class="stat-val">Turunan 970m</div>
+          <div class="stat-lbl">Risiko Rem Pujon</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>

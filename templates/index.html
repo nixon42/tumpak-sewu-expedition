@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panduan Ekspedisi Motor: Kediri – Tumpak Sewu (4 Pax, 2 Motor)</title>
+  <!-- Leaflet.js CSS & JavaScript for Interactive Map (Requirement R1) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="/static/css/main.css?v=20260827_12">
+</head>
+<body>
+
+  <!-- HERO HEADER SECTION -->
+  {% include 'components/hero_header.html' %}
+
+  <!-- STICKY NAVBAR / MOBILE FLOATING COLLAPSIBLE MENU -->
+  <nav class="sticky-nav" id="stickyNavbar">
+    <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" onclick="toggleMobileNav()" aria-expanded="false" aria-label="Menu Navigasi Ekspedisi">
+      <span class="nav-toggle-icon">🧭</span>
+      <span class="nav-toggle-text">Menu</span>
+    </button>
+    <div class="nav-links-container" id="navLinksContainer">
+      <a href="#section-timeline" class="nav-link" onclick="closeMobileNav()">⏱️ Pilihan Rute</a>
+      <a href="#section-vote-summary" class="nav-link" onclick="closeMobileNav()">📊 Live Vote Charts</a>
+      <a href="#section-destinations" class="nav-link" onclick="closeMobileNav()">🏞️ Destinasi Kedua</a>
+      <a href="#section-costs" class="nav-link" onclick="closeMobileNav()">💰 Kalkulator Biaya</a>
+      <a href="#section-safety" class="nav-link" onclick="closeMobileNav()">🚨 SOP Keamanan</a>
+      <a href="#section-checklist" class="nav-link" onclick="closeMobileNav()">🎒 Checklist</a>
+      <a href="#section-emergency" class="nav-link" onclick="closeMobileNav()">📞 Darurat</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 1: TIMELINE & ROUTE COMPARISON (REQUIREMENT R1 & R3) -->
+    <!-- ========================================================================= -->
+    {% include 'components/unified_route.html' %}
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 2: LIVE VOTE COMPARISON SUMMARY CHARTS (REQUIREMENT R2) -->
+    <!-- ========================================================================= -->
+    {% include 'components/vote_charts.html' %}
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 3: 2ND DESTINATION SHOWCASE & COMPARISON (REQUIREMENT R4) -->
+    <!-- ========================================================================= -->
+    {% include 'components/destinations.html' %}
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 4: DYNAMIC COST CALCULATOR (REQUIREMENT R3) -->
+    <!-- ========================================================================= -->
+    {% include 'components/cost_calc.html' %}
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 5: SAFETY WARNINGS & BRAKE PHYSICS (REQUIREMENT R1) -->
+    <!-- ========================================================================= -->
+    {% include 'components/safety.html' %}
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 6: LOGISTICS & PACKING CHECKLIST -->
+    <!-- ========================================================================= -->
+    {% include 'components/checklist.html' %}
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 7: EMERGENCY CONTACTS MATRIX -->
+    <!-- ========================================================================= -->
+    {% include 'components/emergency.html' %}
+
+  </main>
+
+  <!-- MODAL: NICKNAME PROMPT MODAL (REQUIREMENT R2) -->
+  <div id="voteNicknameModal" class="vote-modal-overlay" style="display: none;">
+    <div class="vote-modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">👤 Identitas Pemilih</h3>
+        <button type="button" class="modal-close-btn" onclick="closeVoterModal()">✕</button>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.4;">
+        Masukkan nama atau panggilan Anda untuk mencatat suara rute &amp; destinasi pilihan secara kolektif bersama rombongan.
+      </p>
+      <div>
+        <input type="text" id="voterNameInput" class="voter-input-field" placeholder="Contoh: Budi, Siti, Agus, Dewi..." maxlength="40" onkeydown="if(event.key==='Enter') saveVoterName()">
+        <div class="modal-error-msg" id="voterNameError"></div>
+      </div>
+      <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 6px;">
+        <button type="button" class="btn-action btn-outline btn-sm" onclick="closeVoterModal()">Batal</button>
+        <button type="button" class="btn-action btn-vote-emerald" id="btnSaveVoterName" onclick="saveVoterName()">
+          💾 Simpan &amp; Lanjutkan Vote
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>Panduan Ekspedisi Motor Tumpak Sewu © 2026 • Dirancang untuk rombongan 4 orang (2 motor).</p>
+      <p style="margin-top: 6px; font-size: 0.76rem; color: #64748b;">
+        Selalu utamakan keselamatan berkendara (Safety First). Patuhi batas kecepatan dan istirahat jika lelah.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT ENGINE (ROUTING, CALCULATOR, & IN-CONTEXT VOTING API) -->
+  <!-- ========================================================================= -->
+  <script src="/static/js/app.js?v=20260827_11"></script>
+</body>
+</html>

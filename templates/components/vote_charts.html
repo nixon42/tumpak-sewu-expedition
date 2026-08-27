@@ -1,0 +1,178 @@
+<section id="section-vote-summary" class="section-block">
+  <div class="section-header">
+    <span class="section-tag" style="color: var(--emerald-400);">DISTRIBUSI SUARA REAL-TIME</span>
+    <h2 class="section-title">📊 Live Vote Comparison &amp; Rekapitulasi Rombongan</h2>
+    <p class="section-desc">
+      Pantau distribusi suara pemilihan rute dan destinasi kedua secara real-time dari seluruh peserta ekspedisi (4 orang).
+    </p>
+  </div>
+
+  <div class="glass-panel vote-summary-inner" style="padding: 16px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 1.1rem;">📊</span>
+        <span style="font-size: 0.9rem; font-weight: 800; color: var(--emerald-400); letter-spacing: 0.5px;">LIVE VOTING DISTRIBUTION</span>
+      </div>
+      <span style="font-size: 0.72rem; color: var(--text-muted);">Real-time Sync</span>
+    </div>
+
+    <!-- SWITCH KIRI - KANAN (2 TOMBOL SEIMBANG: 50% - 50%) -->
+    <div class="vote-tab-segmented" role="tablist" aria-label="Kategori Hasil Voting">
+      <button type="button" role="tab" id="btnVoteTabRoute" class="vote-tab-btn active" onclick="switchVoteTab('route')" aria-selected="true">
+        <span>🏍️ Vote Rute</span>
+        <span id="routeVoteBadgeMini" class="vote-tab-badge">0</span>
+      </button>
+      <button type="button" role="tab" id="btnVoteTabDest" class="vote-tab-btn" onclick="switchVoteTab('dest')" aria-selected="false">
+        <span>🧭 Vote Destinasi</span>
+        <span id="destVoteBadgeMini" class="vote-tab-badge">0</span>
+      </button>
+    </div>
+
+    <div class="vote-summary-grid" id="voteSummaryGrid">
+
+      <!-- ROUTE VOTE SUMMARY CARD -->
+      <div class="vote-summary-card" id="voteSummaryCardRoute" style="display: flex;">
+        <div class="vote-summary-title" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+          <span style="font-size: 0.88rem; font-weight: 700; color: var(--text-primary);">🏍️ Distribusi Vote Rute</span>
+          <span id="routeVoteTotalLabel" class="badge badge-sky-soft" style="font-size: 0.75rem;">0 Suara Masuk</span>
+        </div>
+
+        <div class="vote-bars-list" id="routeVoteBarsList">
+          
+          <!-- Plan 2 Bar -->
+          <div class="vote-bar-item" id="summaryBar-route-Plan2">
+            <div class="vote-bar-label-row">
+              <span>Plan 2: Gas Terus Pujon - Dampit</span>
+              <span id="summaryPct-route-Plan2" style="color: var(--emerald-400);">0% (0 suara)</span>
+            </div>
+            <div class="vote-bar-track">
+              <div class="vote-bar-fill" id="summaryFill-route-Plan2" style="width: 0%; background: linear-gradient(90deg, #059669, #10b981);"></div>
+            </div>
+            <div class="vote-voters-chips" id="summaryVoters-route-Plan2"></div>
+          </div>
+
+          <!-- Plan 1 Bar -->
+          <div class="vote-bar-item" id="summaryBar-route-Plan1">
+            <div class="vote-bar-label-row">
+              <span>Plan 1: Transit Warkop Malang</span>
+              <span id="summaryPct-route-Plan1" style="color: var(--sky-400);">0% (0 suara)</span>
+            </div>
+            <div class="vote-bar-track">
+              <div class="vote-bar-fill" id="summaryFill-route-Plan1" style="width: 0%; background: linear-gradient(90deg, #0284c7, #38bdf8);"></div>
+            </div>
+            <div class="vote-voters-chips" id="summaryVoters-route-Plan1"></div>
+          </div>
+
+          <!-- Plan 3 Bar -->
+          <div class="vote-bar-item" id="summaryBar-route-Plan3">
+            <div class="vote-bar-label-row">
+              <span>Plan 3: Blitar Sleep &amp; Recovery</span>
+              <span id="summaryPct-route-Plan3" style="color: var(--amber-400);">0% (0 suara)</span>
+            </div>
+            <div class="vote-bar-track">
+              <div class="vote-bar-fill" id="summaryFill-route-Plan3" style="width: 0%; background: linear-gradient(90deg, #d97706, #fbbf24);"></div>
+            </div>
+            <div class="vote-voters-chips" id="summaryVoters-route-Plan3"></div>
+          </div>
+
+          <!-- Plan 4 Bar -->
+          <div class="vote-bar-item" id="summaryBar-route-Plan4">
+            <div class="vote-bar-label-row">
+              <span>Plan 4: Blitar Warkop 24 Jam</span>
+              <span id="summaryPct-route-Plan4" style="color: #c084fc;">0% (0 suara)</span>
+            </div>
+            <div class="vote-bar-track">
+              <div class="vote-bar-fill" id="summaryFill-route-Plan4" style="width: 0%; background: linear-gradient(90deg, #7c3aed, #c084fc);"></div>
+            </div>
+            <div class="vote-voters-chips" id="summaryVoters-route-Plan4"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DESTINATION VOTE SUMMARY CARD -->
+      <div class="vote-summary-card tab-hidden" id="voteSummaryCardDest" style="display: none;">
+        <div class="vote-summary-title" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+          <span style="font-size: 0.88rem; font-weight: 700; color: var(--text-primary);">🧭 Destinasi Kedua Pilihan</span>
+          <span id="destVoteTotalLabel" class="badge badge-emerald-soft" style="font-size: 0.75rem;">0 Suara Masuk</span>
+        </div>
+
+        <div class="vote-bars-list" id="destVoteBarsList">
+          
+          <!-- Goa Tetes Bar -->
+          <div class="vote-bar-item" id="summaryBar-dest-GoaTetes">
+            <div class="vote-bar-label-row">
+              <span>Goa Tetes (0 km)</span>
+              <span id="summaryPct-dest-GoaTetes" style="color: var(--sky-400);">0% (0 suara)</span>
+            </div>
+            <div class="vote-bar-track">
+              <div class="vote-bar-fill" id="summaryFill-dest-GoaTetes" style="width: 0%; background: linear-gradient(90deg, #0284c7, #38bdf8);"></div>
+            </div>
+            <div class="vote-voters-chips" id="summaryVoters-dest-GoaTetes"></div>
+          </div>
+
+          <!-- Coban Kapas Biru Bar -->
+          <div class="vote-bar-item" id="summaryBar-dest-KapasBiru">
+            <div class="vote-bar-label-row">
+              <span>Coban Kapas Biru (Gardu Panorama)</span>
+              <span id="summaryPct-dest-KapasBiru" style="color: var(--emerald-400);">0% (0 suara)</span>
+            </div>
+            <div class="vote-bar-track">
+              <div class="vote-bar-fill" id="summaryFill-dest-KapasBiru" style="width: 0%; background: linear-gradient(90deg, #059669, #10b981);"></div>
+            </div>
+            <div class="vote-voters-chips" id="summaryVoters-dest-KapasBiru"></div>
+          </div>
+
+          <!-- Air Terjun Kabut Pelangi Bar -->
+          <div class="vote-bar-item" id="summaryBar-dest-KabutPelangi">
+            <div class="vote-bar-label-row">
+              <span>Air Terjun Kabut Pelangi (6.5 km)</span>
+              <span id="summaryPct-dest-KabutPelangi" style="color: #06b6d4;">0% (0 suara)</span>
+            </div>
+            <div class="vote-bar-track">
+              <div class="vote-bar-fill" id="summaryFill-dest-KabutPelangi" style="width: 0%; background: linear-gradient(90deg, #0891b2, #06b6d4);"></div>
+            </div>
+            <div class="vote-voters-chips" id="summaryVoters-dest-KabutPelangi"></div>
+          </div>
+
+          <!-- Pantai Selatan Malang Bar -->
+          <div class="vote-bar-item" id="summaryBar-dest-PantaiSelatan">
+            <div class="vote-bar-label-row">
+              <span>Pantai Selatan Malang / JLS</span>
+              <span id="summaryPct-dest-PantaiSelatan" style="color: var(--amber-400);">0% (0 suara)</span>
+            </div>
+            <div class="vote-bar-track">
+              <div class="vote-bar-fill" id="summaryFill-dest-PantaiSelatan" style="width: 0%; background: linear-gradient(90deg, #d97706, #fbbf24);"></div>
+            </div>
+            <div class="vote-voters-chips" id="summaryVoters-dest-PantaiSelatan"></div>
+          </div>
+
+          <!-- Bromo Sunrise Bar -->
+          <div class="vote-bar-item" id="summaryBar-dest-Bromo">
+            <div class="vote-bar-label-row">
+              <span>Bromo Sunrise / TNBTS</span>
+              <span id="summaryPct-dest-Bromo" style="color: #c084fc;">0% (0 suara)</span>
+            </div>
+            <div class="vote-bar-track">
+              <div class="vote-bar-fill" id="summaryFill-dest-Bromo" style="width: 0%; background: linear-gradient(90deg, #7c3aed, #c084fc);"></div>
+            </div>
+            <div class="vote-voters-chips" id="summaryVoters-dest-Bromo"></div>
+          </div>
+
+          <!-- Teras Semeru Bar -->
+          <div class="vote-bar-item" id="summaryBar-dest-TerasSemeru">
+            <div class="vote-bar-label-row">
+              <span>Teras Semeru Sumberurip (4.5 km)</span>
+              <span id="summaryPct-dest-TerasSemeru" style="color: #fb7185;">0% (0 suara)</span>
+            </div>
+            <div class="vote-bar-track">
+              <div class="vote-bar-fill" id="summaryFill-dest-TerasSemeru" style="width: 0%; background: linear-gradient(90deg, #e11d48, #f43f5e);"></div>
+            </div>
+            <div class="vote-voters-chips" id="summaryVoters-dest-TerasSemeru"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
