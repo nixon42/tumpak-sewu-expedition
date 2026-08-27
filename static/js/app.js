@@ -112,6 +112,15 @@
         desc: 'Jl. Kendalsari / Suhat, kafe 24 jam estetik, Wi-Fi kencang, AC & colokan.',
         color: '#38bdf8',
         gmapsQuery: 'Roketto Coffee Malang'
+      },
+      brewok_malang: {
+        id: 'Warkop Brewok Prime Malang',
+        latLng: [-7.9468, 112.6312],
+        title: '🍜 Warkop Brewok Prime Malang (24 Jam)',
+        category: 'Warkop 24h (Plan 1)',
+        desc: 'Jl. Selorejo / Suhat, warkop 24 jam legendaris, pancong lumer, kopi & lesehan.',
+        color: '#38bdf8',
+        gmapsQuery: 'Warkop Brewok Prime Malang'
       }
     };
 
