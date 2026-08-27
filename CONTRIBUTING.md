@@ -15,7 +15,7 @@ Proyek ini menggunakan [`uv`](https://github.com/astral-sh/uv) sebagai manajer d
 ### 2. Setup Awal
 ```bash
 # Clone repository
-git clone https://github.com/your-username/tumpak-sewu-expedition.git
+git clone https://github.com/nixon42/tumpak-sewu-expedition.git
 cd tumpak-sewu-expedition
 
 # Sinkronkan dependensi dengan uv

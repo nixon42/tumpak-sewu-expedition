@@ -71,7 +71,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ### 2. Instalasi & Menjalankan Aplikasi
 ```bash
 # 1. Clone repository
-git clone https://github.com/your-username/tumpak-sewu-expedition.git
+git clone https://github.com/nixon42/tumpak-sewu-expedition.git
 cd tumpak-sewu-expedition
 
 # 2. Sinkronkan dependensi secara instan
