@@ -927,19 +927,36 @@
 
     .plan-features-list {
       list-style: none;
+      padding: 0;
+      margin: 0 0 14px 0;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
       font-size: 0.82rem;
       color: var(--text-secondary);
-      margin-bottom: 14px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .plan-features-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      line-height: 1.4;
+      position: relative;
+      padding-left: 22px;
+      line-height: 1.45;
+      display: block;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .plan-features-list li > span:first-child {
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1.45;
+      font-weight: 700;
+      display: inline-block;
+      width: 16px;
     }
 
     /* CARD ACTION FOOTER & IN-CARD VOTING */
